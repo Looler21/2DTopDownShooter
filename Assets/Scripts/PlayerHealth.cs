@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour {
     {
         healthText.text = (hp / maxHp * 100).ToString() + "%";
         healthBar.fillAmount = hp / maxHp;
-		hp = maxHp;
     }
 
     // Update is called once per frame
@@ -24,10 +23,6 @@ public class PlayerHealth : MonoBehaviour {
 	}
     public void TakeDamage(float damage)
     {
-		if(hp <= 0)
-		{
-			Destroy(gameObject.transform);
-		}
         hp -= damage;
         float currentHp = hp / maxHp;
         healthText.text = (currentHp * 100).ToString() + "%";
@@ -40,9 +35,7 @@ public class PlayerHealth : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("why");
-			Destroy(other);
-			TakeDamage(other.GetComponent<Enemy>().getAttackDamage());
-			
+            TakeDamage(5);
         }
     }
 
