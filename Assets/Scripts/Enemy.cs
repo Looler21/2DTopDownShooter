@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
 
     public float speed;
     public float attackRange;
+	public float damageOnHit = 1;
     public float waitTime;
     public float startWaitTime;
 
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour {
             Look(patrolAreas[areaToPatrol]);
             transform.position = Vector2.MoveTowards(transform.position, patrolAreas[areaToPatrol].position, speed * Time.deltaTime);
 
-            if (Vector2.Distance(transform.position, patrolAreas[areaToPatrol].position) <= 2)
+            if (Vector2.Distance(transform.position, patrolAreas[areaToPatrol].position) <= 5)
             {
                 if (waitTime <= 0)
                 {
@@ -46,8 +47,6 @@ public class Enemy : MonoBehaviour {
         }
         else if (chasing)
         {
-
-
             Look(target);
 
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
@@ -58,12 +57,15 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+	public float getAttackDamage() { return damageOnHit; }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             patrolling = false;
             chasing = true;
+			target = collision.transform;
         }
     }
 
