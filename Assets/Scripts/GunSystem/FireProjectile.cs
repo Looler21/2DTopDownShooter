@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class FireProjectile : MixinBase
 {
-	public Transform projectilePrefab;
+	public GameObject projectilePrefab;
 	public Transform firePosition;
+	public GameObject player;
+	public float bulletSpeed;
+	public GameObject gunFlare;
 
 	public override void Action()
 	{
-		Instantiate(projectilePrefab, firePosition.position, firePosition.rotation);
+		GameObject bulletShoot = (GameObject)Instantiate(projectilePrefab, firePosition.position, firePosition.rotation);
+		bulletShoot.GetComponent<Rigidbody2D>().velocity = (transform.position - player.transform.position).normalized * bulletSpeed;
+		Instantiate(gunFlare, transform.position, Quaternion.identity);
 	}
 }
