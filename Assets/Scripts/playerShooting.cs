@@ -11,6 +11,8 @@ public class playerShooting : MonoBehaviour {
 	private BaseWeapon weaponSniper;
 	private BaseWeapon weaponPlasma;
 
+	private Health playerHealth;
+
 	public Transform firingPoint; //Where the bullet will travel/check from (realistic gun)
 	private Vector2 mousePosition; //position of mouse
 	private Vector2 firingOrigin;
@@ -27,6 +29,7 @@ public class playerShooting : MonoBehaviour {
 		weaponRifle = new BaseWeapon(BaseWeapon.WeaponClass.Rifle, BaseWeapon.ShootType.hitscan,30);
 		weaponSniper = new BaseWeapon(BaseWeapon.WeaponClass.Sniper, BaseWeapon.ShootType.hitscan,2);
 		weaponPlasma = new BaseWeapon(BaseWeapon.WeaponClass.Plasma, BaseWeapon.ShootType.projectile,5);
+		playerHealth = new Health(10.0f);
 	}
 
 	private void Start()
