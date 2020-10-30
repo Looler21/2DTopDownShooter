@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class BaseWeapon { 
-    
+
 	public enum WeaponClass
 	{
 		Pistol,
@@ -24,11 +25,12 @@ public class BaseWeapon {
 	private int ammo;
 	public int maxAmmo;
 
-	public BaseWeapon(WeaponClass weaponClass,ShootType shootType )
+	public BaseWeapon(WeaponClass weaponClass,ShootType shootType, int maxAmmo )
 	{
 		this.shootType = shootType;
 		this.weaponClass = weaponClass;
-		ammo = GetMaxAmmo();
+		ammo = maxAmmo;
+		this.maxAmmo = maxAmmo;
 	}
 
 	public WeaponClass GetWeaponClass(){ return weaponClass;}
@@ -61,7 +63,7 @@ public class BaseWeapon {
 			case WeaponClass.Pistol:
 				return .25f;
 			case WeaponClass.Rifle:
-				return .1f;
+				return .05f;
 			case WeaponClass.Sniper:
 				return .75f;
 			case WeaponClass.Plasma:
@@ -85,14 +87,57 @@ public class BaseWeapon {
 		}
 	}
 
-	public void Shoot()
+	public float GetShootDistance() // ONLY FOR HITSCAN WEAPONS
 	{
+		switch (weaponClass)
+		{
+			default:
+			case WeaponClass.Pistol:
+				return 300.0f;
+			case WeaponClass.Rifle:
+				return 200.0f;
+			case WeaponClass.Sniper:
+				return 1000.0f;
+
+		}
+	}
+
+	public bool Shoot(Vector2 mousePosition, Vector2 firingOrigin, float timeSinceLastFire ,float shootingDistance = 500f)
+	{
+		Debug.Log("Tried to Shoot");
+		if (!checkIfAvailableAmmo()) {
+			Reload();
+			Debug.Log("Check ammo failed");
+			return false;
+		}
+
+		if(!(GetFireRate() <= timeSinceLastFire)) {
+			Debug.Log("fire rate failed");
+			return false; 
+		}
+		
 		if(shootType == ShootType.hitscan)
 		{
+			
+			RaycastHit2D hit = Physics2D.Raycast(firingOrigin, mousePosition - firingOrigin, shootingDistance);
 
-		}else if(shootType == ShootType.projectile)
+			Debug.DrawRay(firingOrigin, mousePosition - firingOrigin, Color.red, shootingDistance);
+			
+			if(hit && hit.collider.CompareTag("Enemy"))
+			{
+				hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
+			}
+			Debug.Log("ShootHitScan");
+			return true;
+		}
+		else if(shootType == ShootType.projectile)
 		{
-
+			return true;
+		}
+		else
+		{
+			Debug.Log("gun missing shoot type");
+			return false;
 		}
 	}
 }
