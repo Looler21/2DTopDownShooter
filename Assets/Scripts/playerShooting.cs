@@ -16,10 +16,10 @@ public class playerShooting : MonoBehaviour {
 
 	private void Awake()
 	{
-		weaponPistol = new BaseWeapon(BaseWeapon.WeaponClass.Pistol);
-		weaponRifle = new BaseWeapon(BaseWeapon.WeaponClass.Rifle);
-		weaponSniper = new BaseWeapon(BaseWeapon.WeaponClass.Sniper);
-		weaponPlasma = new BaseWeapon(BaseWeapon.WeaponClass.Plasma);
+		weaponPistol = new BaseWeapon(BaseWeapon.WeaponClass.Pistol, BaseWeapon.ShootType.hitscan);
+		weaponRifle = new BaseWeapon(BaseWeapon.WeaponClass.Rifle, BaseWeapon.ShootType.hitscan);
+		weaponSniper = new BaseWeapon(BaseWeapon.WeaponClass.Sniper, BaseWeapon.ShootType.hitscan);
+		weaponPlasma = new BaseWeapon(BaseWeapon.WeaponClass.Plasma, BaseWeapon.ShootType.projectile);
 	}
 
 	// Update is called once per frame

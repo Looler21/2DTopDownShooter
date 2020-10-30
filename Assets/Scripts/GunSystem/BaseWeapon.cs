@@ -13,25 +13,27 @@ public class BaseWeapon {
 		Plasma
 	}
 
+	public enum ShootType
+	{
+		projectile,
+		hitscan
+	}
+
 	private WeaponClass weaponClass;
+	private ShootType shootType;
 	private int ammo;
 	public int maxAmmo;
 
-	public BaseWeapon(WeaponClass weaponClass)
+	public BaseWeapon(WeaponClass weaponClass,ShootType shootType )
 	{
+		this.shootType = shootType;
 		this.weaponClass = weaponClass;
 		ammo = GetMaxAmmo();
 	}
 
-	public WeaponClass GetWeaponClass()
-	{
-		return weaponClass;
-	}
+	public WeaponClass GetWeaponClass(){ return weaponClass;}
 
-	private int GetMaxAmmo()
-	{
-		return maxAmmo;
-	}
+	private int GetMaxAmmo(){return maxAmmo;}
 
 	public bool checkIfAvailableAmmo()
 	{
@@ -80,6 +82,17 @@ public class BaseWeapon {
 				return 4f;
 			case WeaponClass.Plasma:
 				return 3.2f;
+		}
+	}
+
+	public void Shoot()
+	{
+		if(shootType == ShootType.hitscan)
+		{
+
+		}else if(shootType == ShootType.projectile)
+		{
+
 		}
 	}
 }
