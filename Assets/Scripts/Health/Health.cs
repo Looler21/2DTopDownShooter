@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
 
 	private float maxHealth;
-	public float health;
+	private float health;
 
 	public Health(float maxHealth)
 	{
