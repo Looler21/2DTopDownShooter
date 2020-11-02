@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class BaseWeapon { 
+public class BaseWeapon{ 
 
 	public enum WeaponClass
 	{
@@ -102,9 +102,13 @@ public class BaseWeapon {
 		}
 	}
 
-	public bool Shoot(Vector2 mousePosition, Vector2 firingOrigin, float timeSinceLastFire ,float shootingDistance = 500f)
+	public static ShootType getShootType(BaseWeapon weapon)
 	{
-		Debug.Log("Tried to Shoot");
+		return weapon.shootType;
+	}
+
+	public bool Shoot(Vector2 mousePosition, Vector2 firingOrigin, float timeSinceLastFire, float shootingDistance = 500f)
+	{
 		if (!checkIfAvailableAmmo()) {
 			Reload();
 			Debug.Log("Check ammo failed");
@@ -118,7 +122,6 @@ public class BaseWeapon {
 		
 		if(shootType == ShootType.hitscan)
 		{
-			
 			RaycastHit2D hit = Physics2D.Raycast(firingOrigin, mousePosition - firingOrigin, shootingDistance);
 
 			Debug.DrawRay(firingOrigin, mousePosition - firingOrigin, Color.red, shootingDistance);
@@ -127,12 +130,13 @@ public class BaseWeapon {
 			{
 				hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
 			}
-			Debug.Log("ShootHitScan");
+			
 			return true;
 		}
 		else if(shootType == ShootType.projectile)
 		{
-			return true;
+			Debug.Log("ShootProjectile");
+			return true;//code handled on player
 		}
 		else
 		{

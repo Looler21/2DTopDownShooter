@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4632365130567554813}
   - component: {fileID: 5954062909222759656}
-  - component: {fileID: 3232959303150577447}
   - component: {fileID: 7234371768091066475}
   m_Layer: 0
   m_Name: BulletPrefab
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c60594fcec3b7c4ca7f8d24791b1bc5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 092a8faf305082d4196c1dcb5b0bcc08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,18 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3232959303150577447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5330119999222279207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c14ef8e901ce024eb64cb83cec32654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7234371768091066475
 Rigidbody2D:
   serializedVersion: 4

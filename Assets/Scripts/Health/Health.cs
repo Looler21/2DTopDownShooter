@@ -6,14 +6,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-	private float maxHealth;
+	public float maxHealth;
 	public float health;
-
-	public Health(float maxHealth)
-	{
-		this.maxHealth = maxHealth;
-		health = maxHealth;
-	}
 
 	public float getHealth() { return health; }
 
