@@ -62,16 +62,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29c338a75742d4b9a09f5d2aa8f5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolAreas:
-  - {fileID: 0}
-  - {fileID: 0}
   target: {fileID: 0}
   speed: 4
   attackRange: 2
-  waitTime: 2
-  startWaitTime: 2
   patrolling: 0
   chasing: 0
+  patrolAreas:
+  - {fileID: 0}
+  - {fileID: 0}
+  waitTime: 2
+  startWaitTime: 2
+  die: 0
 --- !u!114 &114762976118300806
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,36 +4,39 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    public Transform[] patrolAreas; //positions to move from
-    public Transform target;
+	public Transform target;
+	public float speed;
+	public float attackRange;
 
-    public float speed;
-    public float attackRange;
-    public float waitTime;
-    public float startWaitTime;
+	public bool patrolling = false;
+	public bool chasing;
 
-    public bool patrolling;
-    public bool chasing;
+	public Transform[] patrolAreas; //positions to move from
+	public float waitTime;
+	public float startWaitTime;
 
-	public bool lunging;
-	public float lungeRange;
-	public float lungeSpeedMultiplier;	//based on base speed
-	Vector2 lungeLocation;
-	public float lungeCooldown;
-	[SerializeField] private float lungeCooldownTimer;
+	public bool die = false;
 
 	private int areaToPatrol;
-    void Start()
+    protected virtual void Start()
     {
-        patrolling = true;
+		target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+
+		if(patrolAreas.Length > 0)
+			patrolling = true;
+
         waitTime = startWaitTime;
         areaToPatrol = Random.Range(0, patrolAreas.Length);
-
-		lungeSpeedMultiplier *= speed;
     }
 
-    void Update()
+    protected virtual void Update()
     {
+		if(die)
+		{
+			Die();
+			die = false;
+		}
+
         if (patrolling)
         {
             Look(patrolAreas[areaToPatrol]);
@@ -55,14 +58,23 @@ public class Enemy : MonoBehaviour {
         else if (chasing)
         {
 			float distanceToPlayer = Vector2.Distance(transform.position, target.position);
-
+			Look(target);
+			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+			
 			/*
-			if (distanceToPlayer <= attackRange && !lunging)
+			if (distanceToPlayer <= lungeRange)
 			{
-				Debug.Log("Player touched me");
-				Attack(target);
+				lunging = true;
+				lungeLocation = target.position;
 			}
-			*/
+			
+
+			//if (distanceToPlayer <= attackRange && !lunging)
+			//{
+			//	Debug.Log("Player touched me");
+			//	Attack(target);
+			//}
+
 			if (lunging)
 			{
 				LungeAt(lungeLocation);
@@ -74,6 +86,8 @@ public class Enemy : MonoBehaviour {
 			}
 			else
 			{
+				//if its time during a random range, dodge to the side every x seconds during chasing/alert/being shot at(?)
+
 				Look(target);
 
 				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
@@ -84,10 +98,11 @@ public class Enemy : MonoBehaviour {
 					lungeLocation = target.position;
 				}
 			}
+			*/
 		}
-    }
+	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -96,14 +111,14 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void Look(Transform toLook)
+    protected virtual void Look(Transform toLook)
     {
         Vector3 dir = toLook.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-	private void Attack(Transform playerManager)
+	protected virtual void Attack(Transform playerManager)
 	{
 		float weaponDamage = 5f;
 		PlayerHealth player = playerManager.GetComponent<PlayerHealth>();
@@ -112,6 +127,13 @@ public class Enemy : MonoBehaviour {
 		//Debug.Log(player.hp);
 	}
 
+	public virtual void Die()
+	{
+		DestroyImmediate(gameObject);
+		Debug.Log("Killed enemy");
+	}
+
+	/*
 	private void LungeAt(Vector3 location)
 	{
 		if (Vector2.Distance(transform.position, location) > 0)	
@@ -136,4 +158,5 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 	}
+	*/
 }
