@@ -78,7 +78,6 @@ public class playerShooting : MonoBehaviour {
 						Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
 					weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire);
-					Debug.Log("Shot da ray");
 					timeSinceLastFire = 0;
 				}else if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.projectile)
 				{
@@ -88,7 +87,6 @@ public class playerShooting : MonoBehaviour {
 
 					GameObject bullet = (GameObject)Instantiate(getWeaponProjectilePrefab(weapon), firingOrigin, Quaternion.identity);
 					bullet.GetComponent<Rigidbody2D>().velocity = (firingOrigin - new Vector2(transform.position.x,transform.position.y)).normalized * getWeaponProjectileSpeed(weapon);
-					Debug.Log("Shoot a Projectile");
 				}
 			}
 			else
