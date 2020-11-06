@@ -104,10 +104,12 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+		Debug.Log("I touched something");
         if (collision.gameObject.CompareTag("Player"))
         {
             patrolling = false;
             chasing = true;
+			Debug.Log("I am chasing the player");
         }
     }
 
