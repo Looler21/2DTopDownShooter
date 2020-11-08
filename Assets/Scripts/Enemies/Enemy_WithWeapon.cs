@@ -25,11 +25,6 @@ public class Enemy_WithWeapon : Enemy
 			Debug.LogWarning("WARNING: Fire rate is 0 for enemy: " + gameObject.name + ". Defaulting to 1 shot/sec");
 			fireRate = 1f;
 		}
-		if (speed <= 0)
-		{
-			Debug.LogWarning("WARNING: Speed is 0 for enemy: " + gameObject.name + ". Defaulting to 1 speed");
-			speed = 3f;
-		}
 	}
 
 	protected override void Update()

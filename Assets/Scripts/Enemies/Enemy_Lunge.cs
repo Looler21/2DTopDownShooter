@@ -24,7 +24,13 @@ public class Enemy_Lunge : Enemy
 	protected override void Update()
 	{
 		//Base enemy class update
-		//base.Update();
+		//base.Update();		//if you double up on the update, it makes for a really cool effect jiggly effect, but i dont think the double code is good - also doubles their movement speed
+
+		if(die)
+		{
+			Die();
+		}
+
 
 		if(chasing)
 		{
@@ -43,7 +49,7 @@ public class Enemy_Lunge : Enemy
 				LungeAt(lungeLocation);
 				if (distanceToPlayer <= attackRange)
 				{
-					Debug.Log("Lunged and hit");
+					//Debug.Log("Lunged and hit");
 					//Attack(target);
 				}
 			}

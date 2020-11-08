@@ -17,7 +17,9 @@ public class Enemy : MonoBehaviour {
 
 	public bool die = false;
 
+	private WaveManager waveManager;
 	private int areaToPatrol;
+
     protected virtual void Start()
     {
 		target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
@@ -27,7 +29,18 @@ public class Enemy : MonoBehaviour {
 
         waitTime = startWaitTime;
         areaToPatrol = Random.Range(0, patrolAreas.Length);
-    }
+
+		waveManager = FindObjectOfType<WaveManager>();
+		if(waveManager == null)
+		{
+			Debug.LogWarning("WARNING: No active WaveManager to keep track of waves and enemy deaths.");
+		}
+		if (speed <= 0)     //should move this to default enemy class Start()
+		{
+			Debug.LogWarning("WARNING: Speed is 0 for enemy: " + gameObject.name + ". Defaulting to 1 speed");
+			speed = 3f;
+		}
+	}
 
     protected virtual void Update()
     {
@@ -104,6 +117,12 @@ public class Enemy : MonoBehaviour {
 	{
 		Destroy(gameObject);
 		Debug.Log("Killed enemy");
+		
+		if (waveManager.enemiesAlive >= 0)
+			waveManager.enemiesAlive--;
+		else
+			Debug.LogWarning("WARNING: Die() - Cannot decrease waves[" + waveManager.waveNum + "]'s enemiesAlive count because it's <= 0.");
+
 	}
 
 	/*

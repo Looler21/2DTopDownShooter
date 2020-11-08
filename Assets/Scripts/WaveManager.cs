@@ -14,27 +14,31 @@ public class WaveManager : MonoBehaviour
 
 	public Wave[] waves;
 	private GameObject[] enemies;
-	[SerializeField]private int waveNum;
+	public int enemiesAlive;
+	public int waveNum;
+
+	[HideInInspector]private bool debug_gameOverAntiSpam = false;
 
 
 	//TODO - remove when done implementing something that spawns waves when the previous one is finished
-	public bool spawnWave = false;	// During play, tick the checkbox in the inspector to spawn the next wave
+	public bool manuallySpawnNextWave = false;	// During play, tick the checkbox in the inspector to spawn the next wave
 
     // Start is called before the first frame update
     void Start()
     {
+		enemiesAlive = 0;
 		waveNum = 0;	// waveNum is 0 aligned, despite whatever you see in the inspector
     }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (spawnWave)
+		if (manuallySpawnNextWave || enemiesAlive == 0)
 		{
 			if(SpawnWave(waveNum))
 				waveNum++;
 
-			spawnWave = false;
+			manuallySpawnNextWave = false;
 		}
     }
 
@@ -50,8 +54,11 @@ public class WaveManager : MonoBehaviour
 			int waveAmountOfSpawns = waves[waveNum].spawns.Length;
 
 			// TODO - is there a better way to let scripters/other devs set spawn points + enemies to spawn?
-			if (waveAmountOfEnemies == waveAmountOfSpawns)	// Sanity check - make sure amt of enemy prefabs matchs amt of spawns
+			if (waveAmountOfEnemies == waveAmountOfSpawns)  // Sanity check - make sure amt of enemy prefabs matchs amt of spawns
 			{
+				//Update how many enemies in wave
+				enemiesAlive = waveAmountOfEnemies;
+
 				enemies = new GameObject[waveAmountOfEnemies];
 
 				// For each prefab enemy/spawn defined in the current wave, Instantiate those enemies
@@ -64,7 +71,8 @@ public class WaveManager : MonoBehaviour
 					}
 					else
 					{
-						Debug.Log("Error on wave: " + waves[waveNum].waveName + ". Either an enemy prefab isn't defined, or not all spawnpoints are defined");
+						Debug.LogError("ERROR on wave: " + waves[waveNum].waveName + ". Either an enemy prefab isn't defined, or not all spawnpoints are defined");
+						enemiesAlive = 0;
 						return false;
 					}
 				}
@@ -73,12 +81,23 @@ public class WaveManager : MonoBehaviour
 				return true;
 			}
 			else
-				Debug.Log("Error on wave: \"" + waves[waveNum].waveName + "\", mismatch amount of EnemyPrefabs and Spawns.");
+				Debug.LogWarning("WARNING: Mismatch amount of EnemyPrefabs and Spawns on wave: \"" + waves[waveNum].waveName + "\"");
 
 		}
 		else
-			Debug.Log("No wave to spawn next. \"waveNum\" would exceed how many waves given.");
+		{
+			if (waveNum == waves.Length)
+			{
+				GameOver();
+			}
+			else
+			{ 
+				Debug.LogError("ERROR: waveNum is too high. [waveNum: " + waveNum + "], [waves.length: " + waves.Length +"]");
+				GameOver();
+			}
+		}
 
+		enemiesAlive = 0;
 		return false;
 	}
 
@@ -93,5 +112,15 @@ public class WaveManager : MonoBehaviour
 		}
 		else
 			Debug.Log("No enemies to destroy from the previous wave.");
+	}
+
+	private void GameOver()
+	{
+		if(!debug_gameOverAntiSpam)
+		{
+			Debug.Log("All waves complete!");
+			debug_gameOverAntiSpam = true;
+		}
+		
 	}
 }
