@@ -55,50 +55,16 @@ public class Enemy : MonoBehaviour {
                 }
             }
         }
-        else if (chasing)
+        else if (chasing)		//TODO - prone to chasing and getting stuck through walls
         {
 			float distanceToPlayer = Vector2.Distance(transform.position, target.position);
 			Look(target);
 			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-			
-			/*
-			if (distanceToPlayer <= lungeRange)
+
+			if (distanceToPlayer <= attackRange)
 			{
-				lunging = true;
-				lungeLocation = target.position;
+				Attack(target);
 			}
-			
-
-			//if (distanceToPlayer <= attackRange && !lunging)
-			//{
-			//	Debug.Log("Player touched me");
-			//	Attack(target);
-			//}
-
-			if (lunging)
-			{
-				LungeAt(lungeLocation);
-				if (distanceToPlayer <= attackRange)
-				{
-					Debug.Log("Lunged and hit");
-					//Attack(target);
-				}
-			}
-			else
-			{
-				//if its time during a random range, dodge to the side every x seconds during chasing/alert/being shot at(?)
-
-				Look(target);
-
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-				if (distanceToPlayer <= lungeRange)
-				{
-					lunging = true;
-					lungeLocation = target.position;
-				}
-			}
-			*/
 		}
 	}
 
@@ -113,25 +79,30 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected virtual void Look(Transform toLook)
+	protected virtual void Look(Transform toLook, float degOffset)
     {
         Vector3 dir = toLook.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
+	protected virtual void Look(Transform toLook)
+	{
+		Look(toLook, 0);
+	}
+
 	protected virtual void Attack(Transform playerManager)
 	{
-		float weaponDamage = 5f;
-		PlayerHealth player = playerManager.GetComponent<PlayerHealth>();
-		player.TakeDamage(weaponDamage);
+		//float weaponDamage = 5f;
+		//PlayerHealth player = playerManager.GetComponent<PlayerHealth>();
+		//player.TakeDamage(weaponDamage);
 
 		//Debug.Log(player.hp);
 	}
 
 	public virtual void Die()
 	{
-		DestroyImmediate(gameObject);
+		Destroy(gameObject);
 		Debug.Log("Killed enemy");
 	}
 

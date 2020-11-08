@@ -170,7 +170,7 @@ MonoBehaviour:
     - {fileID: 1023385041013868, guid: 07e6daa02c4d37342b15d131181e0e4c, type: 3}
     spawns:
     - {fileID: 1155524167}
-  - waveName: Third Test
+  - waveName: Fourth Test
     enemyPrefabs:
     - {fileID: 6945365350578342676, guid: bf6b5ba4e5616464ebc004ef931df4b3, type: 3}
     spawns:
