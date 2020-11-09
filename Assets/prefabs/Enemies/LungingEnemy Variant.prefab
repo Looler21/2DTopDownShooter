@@ -27,6 +27,8 @@ MonoBehaviour:
   lungeLocation: {x: 0, y: 0}
   lungeCooldown: 1.25
   lungeCooldownTimer: 0
+  distanceToPlayer: 0
+  distanceToLunge: 0
 --- !u!1001 &3459367782016683216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41,6 +43,18 @@ PrefabInstance:
     - target: {fileID: 1195065285696726, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317175186754626, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317175186754626, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317175186754626, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4612241270421628, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
       propertyPath: m_LocalRotation.x
@@ -82,6 +96,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212196177229430804, guid: a9d9fb29acfb73c47996abba9510f842,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2231885273710382416, guid: e7ebec1f1e6bbbf46951655dc19689af,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 114109595865133874, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
