@@ -11,6 +11,11 @@ public class Health : MonoBehaviour
 
 	public float getHealth() { return health; }
 
+	private void Awake()
+	{
+		health = maxHealth;
+	}
+
 	public void Damage(float amount)// takes perscribed amount away
 	{
 		health -= health;

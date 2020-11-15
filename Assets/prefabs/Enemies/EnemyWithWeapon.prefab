@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 687260008737870919}
   - component: {fileID: 687260008737870913}
   - component: {fileID: 687260008737870918}
+  - component: {fileID: 5380509637665912188}
   m_Layer: 0
   m_Name: EnemyWithWeapon
   m_TagString: Enemy
@@ -124,6 +125,20 @@ MonoBehaviour:
   die: 0
   firingOrigin: {fileID: 687260009825267491}
   fireRate: 0
+--- !u!114 &5380509637665912188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687260008737870912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6374c7d1bbba5444b5b861300b53b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  health: 0
 --- !u!1 &687260009825267490
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,20 @@ MonoBehaviour:
   lungeCooldownTimer: 0
   distanceToPlayer: 0
   distanceToLunge: 0
+--- !u!114 &8700176903490323616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460482279604703238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6374c7d1bbba5444b5b861300b53b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  health: 0
 --- !u!1001 &3459367782016683216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,6 +118,7 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents:
     - {fileID: 114109595865133874, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
+    - {fileID: 114762976118300806, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
 --- !u!1 &3460482279604703238 stripped
 GameObject:
