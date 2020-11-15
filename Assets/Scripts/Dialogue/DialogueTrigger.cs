@@ -8,6 +8,7 @@ public class DialogueTrigger : MonoBehaviour
 
 	public void TriggerDialogue()
 	{
+		Debug.Log("Trying to trigger dialogue");
 		FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
 	}
 }

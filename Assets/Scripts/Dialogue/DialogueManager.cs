@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
 
 	public Animator animator;
 
+	[SerializeField]
 	public Queue<string> sentences;
 
     // Start is called before the first frame update
