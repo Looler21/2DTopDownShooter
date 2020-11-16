@@ -7,11 +7,12 @@ public class Enemy : MonoBehaviour {
 	public Transform target;
 	public float speed;
 	public float attackRange;
+	public float attackDamage;
 
-	public bool patrolling = false;
+	//public bool patrolling = false;
 	public bool chasing;
 
-	public Transform[] patrolAreas; //positions to move from
+	//public Transform[] patrolAreas; //positions to move from
 	public float waitTime;
 	public float startWaitTime;
 
@@ -22,24 +23,27 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Start()
     {
-		target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+		if(target == null)
+			target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 
-		if(patrolAreas.Length > 0)
-			patrolling = true;
+		//if(patrolAreas.Length > 0)
+		//	patrolling = true;
 
         waitTime = startWaitTime;
-        areaToPatrol = Random.Range(0, patrolAreas.Length);
+        //areaToPatrol = Random.Range(0, patrolAreas.Length);
 
 		waveManager = FindObjectOfType<WaveManager>();
 		if(waveManager == null)
-		{
 			Debug.LogWarning("WARNING: No active WaveManager to keep track of waves and enemy deaths.");
-		}
-		if (speed <= 0)     //should move this to default enemy class Start()
+
+		if (speed <= 0)
 		{
 			Debug.LogWarning("WARNING: Speed is 0 for enemy: " + gameObject.name + ". Defaulting to 1 speed");
 			speed = 3f;
 		}
+
+		if(attackDamage <= 0)
+			Debug.LogWarning("WARNING: Damage is <= 0 for this enemy. Will not do any damage to players.");
 	}
 
     protected virtual void Update()
@@ -50,6 +54,7 @@ public class Enemy : MonoBehaviour {
 			die = false;
 		}
 
+		/*
         if (patrolling)
         {
             Look(patrolAreas[areaToPatrol]);
@@ -68,7 +73,9 @@ public class Enemy : MonoBehaviour {
                 }
             }
         }
-        else if (chasing)		//TODO - prone to chasing and getting stuck through walls
+		*/
+
+        if (chasing)		//TODO - prone to chasing and getting stuck through walls
         {
 			float distanceToPlayer = Vector2.Distance(transform.position, target.position);
 			Look(target);
@@ -86,69 +93,47 @@ public class Enemy : MonoBehaviour {
 		Debug.Log("I touched something");
         if (collision.gameObject.CompareTag("Player"))
         {
-            patrolling = false;
+            //patrolling = false;
             chasing = true;
 			Debug.Log("I am chasing the player");
         }
     }
 
 	protected virtual void Look(Transform toLook, float degOffset)
-    {
-        Vector3 dir = toLook.position - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+	{
+
+		//float rotationSpeed
+		/*
+		Quaternion.Slerp(transform.rotation,
+			rotator, rotationSpeed * Time.deltaTime);
+		*/
+		
+		Vector3 dir = toLook.position - transform.position;
+        float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - degOffset;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
+	}
 
 	protected virtual void Look(Transform toLook)
 	{
-		Look(toLook, 0);
+		Look(toLook, 0f);
 	}
 
 	protected virtual void Attack(Transform playerManager)
 	{
-		//float weaponDamage = 5f;
-		//PlayerHealth player = playerManager.GetComponent<PlayerHealth>();
-		//player.TakeDamage(weaponDamage);
-
-		//Debug.Log(player.hp);
+		Health player = playerManager.GetComponent<Health>();
+		player.Damage(attackDamage);
 	}
 
 	public virtual void Die()
 	{
 		Destroy(gameObject);
-		Debug.Log("Killed enemy");
-		
-		if (waveManager.enemiesAlive >= 0)
+		//Debug.Log("Killed enemy");
+
+		if (waveManager != null && waveManager.enemiesAlive >= 0)
 			waveManager.enemiesAlive--;
+		else if (waveManager != null)
+			Debug.LogError("ERROR: Die() - Cannot decrease waves[" + waveManager.waveNum + "]'s enemiesAlive count because it's <= 0.");
 		else
-			Debug.LogWarning("WARNING: Die() - Cannot decrease waves[" + waveManager.waveNum + "]'s enemiesAlive count because it's <= 0.");
-
+			Debug.LogWarning("Warning: Enemy: " + gameObject.name + " was forcefully killed. Should use a WaveManager to keep track of enemy deaths.");
 	}
-
-	/*
-	private void LungeAt(Vector3 location)
-	{
-		if (Vector2.Distance(transform.position, location) > 0)	
-		{
-			// Lunge
-			transform.position = Vector2.MoveTowards(transform.position, location, lungeSpeedMultiplier * Time.deltaTime);
-		}
-		else
-		{
-			// Rotate enemy to slowly look at player while its motionless
-			//Look(target.transform);
-
-			// Keep track of timers; If finished get out of lunging state
-			if (lungeCooldownTimer <= lungeCooldown)
-			{
-				lungeCooldownTimer += Time.deltaTime;
-			}
-			else
-			{
-				lunging = false;
-				lungeCooldownTimer = 0f;
-			}
-		}
-	}
-	*/
 }

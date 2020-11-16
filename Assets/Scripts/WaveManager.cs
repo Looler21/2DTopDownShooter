@@ -12,33 +12,39 @@ public class WaveManager : MonoBehaviour
 		public Transform[] spawns;
 	}
 
+	public bool wavesStarted = false;
+	public bool spawnNextWave = false;  // During play, can tick the checkbox in the inspector to spawn the next wave
+
 	public Wave[] waves;
 	private GameObject[] enemies;
 	public int enemiesAlive;
 	public int waveNum;
 
 	[HideInInspector]private bool debug_gameOverAntiSpam = false;
+	[HideInInspector] private bool debug_waveStartAntiSpam = false;
 
-
-	//TODO - remove when done implementing something that spawns waves when the previous one is finished
-	public bool manuallySpawnNextWave = false;	// During play, tick the checkbox in the inspector to spawn the next wave
-
-    // Start is called before the first frame update
     void Start()
     {
 		enemiesAlive = 0;
 		waveNum = 0;	// waveNum is 0 aligned, despite whatever you see in the inspector
     }
-
-	// Update is called once per frame
+	
 	void Update()
 	{
-		if (manuallySpawnNextWave || enemiesAlive == 0)
+		if ((spawnNextWave || enemiesAlive == 0) && wavesStarted)
 		{
+			if (enemiesAlive > 0 && spawnNextWave)
+				Debug.LogWarning("Force spawning next wave, even with enemies alive.");
+
 			if(SpawnWave(waveNum))
 				waveNum++;
 
-			manuallySpawnNextWave = false;
+			spawnNextWave = false;
+		}
+		else if (!wavesStarted && spawnNextWave && !debug_waveStartAntiSpam)
+		{
+			Debug.LogWarning("WARNING: Waves have not yet started. Cannot spawn next wave. Use StartWaves() first.");
+			debug_waveStartAntiSpam = true;
 		}
     }
 
@@ -101,6 +107,17 @@ public class WaveManager : MonoBehaviour
 		return false;
 	}
 
+	public void StartWaves()	// Set the state of this WaveManager to have started the waves
+	{
+		wavesStarted = true;
+		spawnNextWave = true;
+	}
+
+	public void SpawnNextWave()		// Force next wave to spawn if you already started the waves; forcing next wave to spawn kills all enemies in previous one currently
+	{
+		spawnNextWave = true;
+	}
+
 	public void KillPreviousWave()
 	{
 		if (enemies != null && enemies.Length > 0)
@@ -116,11 +133,12 @@ public class WaveManager : MonoBehaviour
 
 	private void GameOver()
 	{
+		wavesStarted = false;
+
 		if(!debug_gameOverAntiSpam)
 		{
 			Debug.Log("All waves complete!");
 			debug_gameOverAntiSpam = true;
 		}
-		
 	}
 }

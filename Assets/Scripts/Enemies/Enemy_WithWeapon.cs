@@ -35,7 +35,7 @@ public class Enemy_WithWeapon : Enemy
 		
 		if (enemyInVision)
 		{
-			Look(target, 90);
+			Look(target);
 			if (timeSinceLastFire >= fireRate &&
 				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire) )
 			{
@@ -58,7 +58,7 @@ public class Enemy_WithWeapon : Enemy
 		{
 			//Debug.Log("I see someone");
 			enemyInVision = true;
-			patrolling = false;
+			//patrolling = false;
 			chasing = false;
 			
 			target = collision.transform;
@@ -71,7 +71,7 @@ public class Enemy_WithWeapon : Enemy
 		{
 			//Debug.Log("I can't shoot the player anymore. I will attempt to chase them.");
 			enemyInVision = false;
-			patrolling = false;
+			//patrolling = false;
 			chasing = true;
 		}
 	}
