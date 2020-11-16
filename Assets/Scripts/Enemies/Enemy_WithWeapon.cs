@@ -37,7 +37,7 @@ public class Enemy_WithWeapon : Enemy
 		{
 			Look(target);
 			if (timeSinceLastFire >= fireRate &&
-				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire) )
+				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire,300.0f) )
 			{
 				timeSinceLastFire = 0f;		//Bullet was successfully shot from weapon.Shoot(), so reset this counter
 			}

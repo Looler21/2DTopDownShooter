@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
 
@@ -11,9 +12,12 @@ public class playerShooting : MonoBehaviour {
 	private BaseWeapon weaponSniper;
 	private BaseWeapon weaponPlasma;
 
+	public TextMeshProUGUI ammoText;
+
 	public Transform firingPoint; //Where the bullet will travel/check from (realistic gun)
 	private Vector2 mousePosition; //position of mouse
 	private Vector2 firingOrigin;
+	public GameObject muzzleFlash;
 
 	private bool RifleUsable;
 	private bool SniperUsable;
@@ -51,21 +55,18 @@ public class playerShooting : MonoBehaviour {
 			SetWeapon(weaponRifle);
 			Debug.Log("Rifle now equipped");
 		}
-		
 
 		if (Input.GetKeyDown(KeyCode.Alpha3) && SniperUsable)
 		{
 			SetWeapon(weaponSniper);
 			Debug.Log("Sniper now equipped");
 		}
-		
 
 		if (Input.GetKeyDown(KeyCode.Alpha4) && PlasmaUsable)
 		{
 			SetWeapon(weaponPlasma);
 			Debug.Log("Plasma now equipped");
 		}
-		
 
 		if (Input.GetButtonDown("Fire1"))
 		{
@@ -77,8 +78,10 @@ public class playerShooting : MonoBehaviour {
 					mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
 						Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
-					weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire);
+					weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire, weapon.GetShootDistance());
+					GameObject thisThing = (GameObject)Instantiate(muzzleFlash, transform.position, Quaternion.identity);
 					timeSinceLastFire = 0;
+					Destroy(thisThing, .2f);
 				}else if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.projectile)
 				{
 					firingOrigin = new Vector2(firingPoint.position.x, firingPoint.position.y);
@@ -94,6 +97,8 @@ public class playerShooting : MonoBehaviour {
 				Debug.Log("Weapon null");
 			}
 		}
+
+		ammoText.text = weapon.GetAmmo() + "/" + weapon.GetMaxAmmo();
 	}
 
 	private GameObject getWeaponProjectilePrefab(BaseWeapon weapon)
@@ -167,5 +172,4 @@ public class playerShooting : MonoBehaviour {
 			Destroy(collision.gameObject);
 		}
 	}
-
 }

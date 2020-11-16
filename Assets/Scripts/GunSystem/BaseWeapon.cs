@@ -35,7 +35,8 @@ public class BaseWeapon{
 
 	public WeaponClass GetWeaponClass(){ return weaponClass;}
 
-	private int GetMaxAmmo(){return maxAmmo;}
+	public int GetMaxAmmo(){return maxAmmo;}
+	public int GetAmmo() { return ammo; }
 
 	public bool checkIfAvailableAmmo()
 	{
@@ -93,9 +94,9 @@ public class BaseWeapon{
 		{
 			default:
 			case WeaponClass.Pistol:
-				return 300.0f;
+				return 20.0f;
 			case WeaponClass.Rifle:
-				return 200.0f;
+				return 15.0f;
 			case WeaponClass.Sniper:
 				return 1000.0f;
 
@@ -107,7 +108,7 @@ public class BaseWeapon{
 		return weapon.shootType;
 	}
 
-	public bool Shoot(Vector2 mousePosition, Vector2 firingOrigin, float timeSinceLastFire, float shootingDistance = 500f)
+	public bool Shoot(Vector2 mousePosition, Vector2 firingOrigin, float timeSinceLastFire, float shootingDistance)
 	{
 		if (!checkIfAvailableAmmo()) {
 			Reload();
