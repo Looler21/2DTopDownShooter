@@ -78,10 +78,13 @@ public class playerShooting : MonoBehaviour {
 					mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
 						Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
-					weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire, weapon.GetShootDistance());
-					GameObject thisThing = (GameObject)Instantiate(muzzleFlash, transform.position, Quaternion.identity);
-					timeSinceLastFire = 0;
-					Destroy(thisThing, .2f);
+					if(weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire, weapon.GetShootDistance()))
+					{
+						GameObject thisThing = (GameObject)Instantiate(muzzleFlash, firingOrigin, Quaternion.identity);
+						timeSinceLastFire = 0;
+						Destroy(thisThing, .2f);
+					}
+					
 				}else if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.projectile)
 				{
 					firingOrigin = new Vector2(firingPoint.position.x, firingPoint.position.y);

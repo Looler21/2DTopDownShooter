@@ -42,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298065582880924}
   serializedVersion: 6
-  lengthInSec: 0.3
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -4769,7 +4769,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c8f35f7928c46a848a2414349a626765, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9610,7 +9609,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d81b63b3f65d9043a0242562be25ad3, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9701,4 +9699,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fee867fa44d1848a4c9c820cbe6f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0.5
+  time: 0.2
