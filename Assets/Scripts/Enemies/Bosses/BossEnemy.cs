@@ -6,7 +6,8 @@ public class BossEnemy : Enemy
 {
 	[SerializeField] private BossAttack[] attacks;
 	private BossAttack currentAttack;
-	[SerializeField] private Transform playerTarget;
+	[SerializeField] private GameObject playerManager;
+	private Transform playerTarget;
 	public Health hp;
 
 	bool attacking = false;
@@ -15,9 +16,23 @@ public class BossEnemy : Enemy
 	[SerializeField] private float timeBetweenAttacks;
 	[SerializeField] private float attackTimer;
 
-    protected override void Update()
+	private float stompAtkDistance = 4.0f;
+	public bool stomping = false;
+	private BossAttack stompAttack;		//just drag and drop the stompAttack script into the attacks list, just like any other BossAttack
+
+	protected override void Start()
+	{
+		base.Start();
+
+		playerTarget = playerManager.GetComponentInChildren<playerShooting>().transform;
+
+		StompAttackStartupChecks();
+	}
+
+	protected override void FixedUpdate()
     {
-		Look(playerTarget, -90);
+		if(!stomping && !attacking)
+			Look(playerTarget, -90);
 
 		//Update whether the attack is still in progress or not
 		if(currentAttack != null)
@@ -30,17 +45,27 @@ public class BossEnemy : Enemy
 
 			if (attackTimer <= 0)
 			{
-				//randomly choose attack
-				int chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
-				Debug.Log(chosenIdx);
+				//Is player too close? --> Use next attack cycle to push player back with stomp attack
+				float distance = Vector3.Distance(playerTarget.position, this.transform.position);
+				if (stompAttack != null && distance <= stompAtkDistance)
+				{
+					currentAttack = stompAttack;
+					currentAttack.Do();
+					stomping = currentAttack.attackIsActive;
+				}
+				else
+				{
+					//randomly choose attack
+					int chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
 
-				//get ready for attack by going further/closer from player (designated by attack's parameters)
-				//Coroutine here maybe
+					//get ready for attack by going further/closer from player (designated by attack's parameters)
+					//Coroutine here maybe
 
-				//do that attack once distance is far enough
-				currentAttack = attacks[chosenIdx];
-				currentAttack.Do();
-				return;
+					//do that attack once distance is far enough
+					currentAttack = attacks[chosenIdx];
+					currentAttack.Do();
+					return;
+				}
 			}
 		}
 		else
@@ -49,6 +74,28 @@ public class BossEnemy : Enemy
 			attackTimer = timeBetweenAttacks;
 			attacking = false;
 		}
-		
     }
+
+	void StompAttackStartupChecks()
+	{
+		//Search for a stomp attack in the list of attacks
+		int stompAtkCount = 0;
+		foreach (BossAttack attack in attacks)
+		{
+			if (attack.GetComponent<StompAttack>() != null)
+			{
+				stompAttack = attack;
+				stompAtkCount++;
+			}
+		}
+
+		if (stompAtkCount > 1)
+			Debug.LogWarning("Found more than 1 Stomp Attacks for boss: " + name + ". Can only use the one with the largest index in the attacks array");
+
+		//Get the stomp attack trigger distance from that script into this one
+		if (stompAttack != null)
+			stompAtkDistance = stompAttack.GetComponent<StompAttack>().stompDistance;
+		else
+			Debug.LogWarning("No stomp attack found, boss " + gameObject.name + " will not use it.");
+	}
 }

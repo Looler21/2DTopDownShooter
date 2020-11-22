@@ -21,7 +21,7 @@ public class Enemy_Lunge : Enemy
 		lungeSpeedMultiplier *= speed;
 	}
 
-	protected override void Update()
+	protected override void FixedUpdate()
 	{
 		//Base enemy class update
 		//base.Update();		//if you double up on the update, it makes for a really cool effect jiggly effect, but i dont think the double code is good - also doubles their movement speed

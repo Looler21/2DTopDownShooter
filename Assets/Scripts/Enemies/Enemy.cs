@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour {
 			Debug.LogWarning("WARNING: Damage is <= 0 for this enemy. Will not do any damage to players.");
 	}
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
 		/*
         if (patrolling)
@@ -125,13 +125,12 @@ public class Enemy : MonoBehaviour {
 			waveManager.enemiesAlive--;
 		else if (waveManager != null)
 			Debug.LogError("ERROR: Die() - Cannot decrease waves[" + waveManager.waveNum + "]'s enemiesAlive count because it's <= 0.");
-		else
-			Debug.LogWarning("Warning: Enemy: " + gameObject.name + " was forcefully killed. Should use a WaveManager to keep track of enemy deaths.");
+		else if (waveManager == null)
+			Debug.LogError("ERROR: Enemy destroyed. No wave manager found to decrease death of enemy: " + transform.root.name);
 	}
 
 	private void OnDestroy()
 	{
-		Debug.Log("Enemy died");
 		UpdateWaveManager(waveManager);
 	}
 }

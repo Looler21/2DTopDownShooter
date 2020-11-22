@@ -28,4 +28,9 @@ public class playerMovement : MonoBehaviour {
 			transform.Translate(new Vector3(playerX, 0.0f, 0.0f));
 		}
 	}
+
+	public void AddForce(Vector3 force)
+	{
+		transform.Translate(force);
+	}
 }

@@ -27,9 +27,9 @@ public class Enemy_WithWeapon : Enemy
 		}
 	}
 
-	protected override void Update()
+	protected override void FixedUpdate()
 	{
-		base.Update();
+		base.FixedUpdate();
 
 		timeSinceLastFire += Time.deltaTime;
 		

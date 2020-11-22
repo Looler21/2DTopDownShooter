@@ -123,6 +123,106 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &90227195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90227196}
+  - component: {fileID: 90227197}
+  m_Layer: 0
+  m_Name: LaserProjectileAttack_Test2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90227196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90227195}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2142877540}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90227197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90227195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3262f8b8ce80eb4083cbd846a3ef67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackIsActive: 0
+  projectilePrefab: {fileID: 1485125743445281550, guid: e76ce3f68fb3fe048b322a9324c275ea,
+    type: 3}
+  duration: 3
+  rateOfFire: 5
+  speed: 500
+  angleOfFire: 0
+  bulletSpawns: 1
+--- !u!1 &180872313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180872314}
+  - component: {fileID: 180872315}
+  m_Layer: 0
+  m_Name: StompAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180872314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180872313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2142877540}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &180872315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180872313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae47b92802238144bcbdbe8dfd93d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackIsActive: 0
+  playerPos: {fileID: 0}
+  stompDistance: 4
+  stompForce: 10
+  stompDamage: 20
+  stompLength: 1.5
 --- !u!1 &268648264
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +234,7 @@ GameObject:
   - component: {fileID: 268648266}
   - component: {fileID: 268648265}
   m_Layer: 0
-  m_Name: FrontProjectileAttack_Test
+  m_Name: HalfCircleProjectileAttack_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +272,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142877540}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284234095
 GameObject:
@@ -190,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &284234096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,9 +582,9 @@ Transform:
   m_Father: {fileID: 284234097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &607390740 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6947844436611018882, guid: bf6b5ba4e5616464ebc004ef931df4b3,
+--- !u!1 &589570630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6945365350578342676, guid: bf6b5ba4e5616464ebc004ef931df4b3,
     type: 3}
   m_PrefabInstance: {fileID: 1238200165}
   m_PrefabAsset: {fileID: 0}
@@ -645,12 +745,12 @@ PrefabInstance:
     - target: {fileID: 6947844436611018882, guid: bf6b5ba4e5616464ebc004ef931df4b3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.22
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 6947844436611018882, guid: bf6b5ba4e5616464ebc004ef931df4b3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 6947844436611018882, guid: bf6b5ba4e5616464ebc004ef931df4b3,
         type: 3}
@@ -706,6 +806,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978277233313982590, guid: bf6b5ba4e5616464ebc004ef931df4b3,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978277233313982590, guid: bf6b5ba4e5616464ebc004ef931df4b3,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf6b5ba4e5616464ebc004ef931df4b3, type: 3}
@@ -770,8 +880,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1888351736}
-  m_RootOrder: 1
+  m_Father: {fileID: 2142877540}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1397280712
 MonoBehaviour:
@@ -789,8 +899,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5330119999222279207, guid: a9b43cd77e9acdc4c9e839a3a135d195,
     type: 3}
   duration: 1
-  rateOfFire: 3
-  speed: 200
+  rateOfFire: 5
+  speed: 500
   angleOfFire: 10
   bulletSpawns: 5
 --- !u!1 &1698279760
@@ -1030,19 +1140,21 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 0
   attackRange: 0
-  patrolling: 0
+  attackDamage: 1
   chasing: 0
-  patrolAreas: []
   waitTime: 0
   startWaitTime: 0
-  die: 0
+  waveManager: {fileID: 0}
   attacks:
   - {fileID: 268648265}
-  - {fileID: 268648265}
-  playerTarget: {fileID: 607390740}
+  - {fileID: 1397280712}
+  - {fileID: 90227197}
+  - {fileID: 180872315}
+  playerManager: {fileID: 589570630}
   hp: {fileID: 0}
-  timeBetweenAttacks: 10
+  timeBetweenAttacks: 2
   attackTimer: 0
+  stomping: 0
 --- !u!212 &1888351735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1102,11 +1214,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888351733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 0.87, z: 0}
+  m_LocalPosition: {x: -4.74, y: 0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2142877540}
-  - {fileID: 1397280711}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1197,7 +1308,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 180872314}
   - {fileID: 268648266}
+  - {fileID: 1397280711}
+  - {fileID: 90227196}
   m_Father: {fileID: 1888351736}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

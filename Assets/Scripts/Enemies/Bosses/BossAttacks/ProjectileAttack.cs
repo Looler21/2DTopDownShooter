@@ -82,17 +82,25 @@ public class ProjectileAttack : BossAttack
 
 		float firingAngle = spriteAngleOffset - bossParent_rot.z;
 		firingAngle -= (angleOfFire / 2);
-		
-		
+		//Quaternion.Euler(new Vector3(0f, 0f, firingAngle)
+
 		for (int i = 0; i < bulletSpawns; i++)
 		{
 			float x = transform.position.x + Mathf.Sin((firingAngle * Mathf.PI) / 180f);
 			float y = transform.position.y + Mathf.Cos((firingAngle * Mathf.PI) / 180f);
-
-			Vector3 velDir = new Vector3(x, y, 0f);
-			Vector2 shootDir = (velDir - transform.position).normalized;
 			
-			GameObject bullet = Instantiate(projectilePrefab, velDir, Quaternion.Euler(new Vector3(0f, 0f, firingAngle)));
+			Vector3 projectileSpawn = new Vector3(x, y, 0f);
+			Vector2 shootDir = (projectileSpawn - transform.position).normalized;
+
+			//try to align the bullet with the direction it's going? not really working out so far
+			float dir = Mathf.Abs(Vector3.Angle(transform.forward, projectileSpawn));
+			float bulletRotationZ = dir;
+			Vector3 bulletRotation = new Vector3(0f, 0f, transform.root.localEulerAngles.z + bulletRotationZ);
+			
+			Vector3 bossForwardAngle = transform.root.localEulerAngles;
+			//Debug.Log(bossForwardAngle.z);
+
+			GameObject bullet = Instantiate(projectilePrefab, projectileSpawn, Quaternion.identity);
 			bullet.GetComponent<Rigidbody2D>().AddForce(shootDir.normalized * speed);
 
 			firingAngle += angleStep;
