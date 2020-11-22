@@ -102,12 +102,12 @@ public class WaveManager : MonoBehaviour
 		{
 			if (waveNum == waves.Length)
 			{
-				GameOver();
+				WavesOver();
 			}
 			else
 			{ 
 				Debug.LogError("ERROR: waveNum is too high. [waveNum: " + waveNum + "], [waves.length: " + waves.Length +"]");
-				GameOver();
+				WavesOver();
 			}
 		}
 
@@ -139,14 +139,17 @@ public class WaveManager : MonoBehaviour
 			Debug.Log("No enemies to destroy from the previous wave.");
 	}
 
-	private void GameOver()
+	private void WavesOver()
 	{
+		//Disable the gameobject after all waves are done with
 		wavesStarted = false;
 
-		if(!debug_gameOverAntiSpam)
+		if (!debug_gameOverAntiSpam)
 		{
-			Debug.Log("All waves complete!");
+			Debug.Log("All waves complete! Disabling manager: " + name);
 			debug_gameOverAntiSpam = true;
 		}
+
+		this.gameObject.SetActive(false);
 	}
 }
