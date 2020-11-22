@@ -26,12 +26,6 @@ public class Enemy_Lunge : Enemy
 		//Base enemy class update
 		//base.Update();		//if you double up on the update, it makes for a really cool effect jiggly effect, but i dont think the double code is good - also doubles their movement speed
 
-		if(die)
-		{
-			Die();
-		}
-
-
 		if(chasing)
 		{
 			distanceToPlayer = Vector2.Distance(transform.position, target.position);

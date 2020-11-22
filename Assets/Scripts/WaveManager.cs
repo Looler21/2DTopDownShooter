@@ -28,7 +28,13 @@ public class WaveManager : MonoBehaviour
 		enemiesAlive = 0;
 		waveNum = 0;	// waveNum is 0 aligned, despite whatever you see in the inspector
     }
-	
+
+	private void OnEnable()
+	{
+		wavesStarted = true;
+		spawnNextWave = true;
+	}
+
 	void Update()
 	{
 		if ((spawnNextWave || enemiesAlive == 0) && wavesStarted)
@@ -52,6 +58,8 @@ public class WaveManager : MonoBehaviour
 	{
 		// Dump previous wave's enemies if they are alive; can take this out later
 		KillPreviousWave();
+
+		Debug.Log("Spawning a Wave");
 
 		// Spawn all enemies in waves[waveNum]
 		if (waveNum < waves.Length)

@@ -16,9 +16,7 @@ public class Enemy : MonoBehaviour {
 	public float waitTime;
 	public float startWaitTime;
 
-	public bool die = false;
-
-	private WaveManager waveManager;
+	[SerializeField] private WaveManager waveManager;
 	private int areaToPatrol;
 
     protected virtual void Start()
@@ -34,7 +32,7 @@ public class Enemy : MonoBehaviour {
 
 		waveManager = FindObjectOfType<WaveManager>();
 		if(waveManager == null)
-			Debug.LogWarning("WARNING: No active WaveManager to keep track of waves and enemy deaths.");
+			Debug.LogWarning("WARNING: No active WaveManager to keep track of waves and enemy deaths. EnemyName: " + gameObject.name);
 
 		if (speed <= 0)
 		{
@@ -48,12 +46,6 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Update()
     {
-		if(die)
-		{
-			Die();
-			die = false;
-		}
-
 		/*
         if (patrolling)
         {
@@ -124,9 +116,9 @@ public class Enemy : MonoBehaviour {
 		player.Damage(attackDamage);
 	}
 
-	public virtual void Die()
+	protected virtual void UpdateWaveManager(WaveManager waveManager)
 	{
-		Destroy(gameObject);
+		//Destroy(gameObject);
 		//Debug.Log("Killed enemy");
 
 		if (waveManager != null && waveManager.enemiesAlive >= 0)
@@ -135,5 +127,11 @@ public class Enemy : MonoBehaviour {
 			Debug.LogError("ERROR: Die() - Cannot decrease waves[" + waveManager.waveNum + "]'s enemiesAlive count because it's <= 0.");
 		else
 			Debug.LogWarning("Warning: Enemy: " + gameObject.name + " was forcefully killed. Should use a WaveManager to keep track of enemy deaths.");
+	}
+
+	private void OnDestroy()
+	{
+		Debug.Log("Enemy died");
+		UpdateWaveManager(waveManager);
 	}
 }
