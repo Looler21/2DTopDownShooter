@@ -7,4 +7,13 @@ public class GameManager : MonoBehaviour
 	public WaveManager[] waveManagers;
 	public GameObject[] dialogues;
 
+	public void TurnOnDialogue(int a)
+	{
+		dialogues[a].GetComponent<CanvasGroup>().interactable = true;
+		dialogues[a].GetComponent<CanvasGroup>().alpha = 1f;
+		dialogues[a].GetComponent<CanvasGroup>().blocksRaycasts = true;
+	}
+
+
+
 }

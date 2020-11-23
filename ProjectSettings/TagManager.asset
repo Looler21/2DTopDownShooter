@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - DialogueHolder
+  - WaveMan
   layers:
   - Default
   - TransparentFX

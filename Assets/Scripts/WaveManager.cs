@@ -81,7 +81,7 @@ public class WaveManager : MonoBehaviour
 					if (waves[waveNum].enemyPrefabs[i] != null && waves[waveNum].spawns[i] != null)
 					{
 						enemies[i] = Instantiate(waves[waveNum].enemyPrefabs[i],
-									waves[waveNum].spawns[i], false);
+									waves[waveNum].spawns[i].position,Quaternion.identity);
 					}
 					else
 					{

@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class DestroyWave : MonoBehaviour
 {
-	public GameObject thingToEnable; //DIALOGUE FOR NEXT ROUND
-	public GameObject waveToDestroy; //SET TO THE WAVE MANAGER THIS UNIT WAS APART OF
-	public GameObject NextActivateWaveMan; // SET TO PREFAB OF PRESSURE PAD FOR NEXT WAVEMANAGER
+
+	public GameObject NextActivatePressurePad; // SET TO PREFAB OF PRESSURE PAD FOR NEXT WAVEMANAGER
+	public int DialogueToEnable;// int of index of dialogue
+
+	private GameManager gameMan;
+
+	private void Start()
+	{
+		gameMan = FindObjectOfType<GameManager>();
+	}
 
 	private void OnDestroy()
 	{
-		Destroy(waveToDestroy);
-		Debug.Log("1");
-		thingToEnable.GetComponent<CanvasGroup>().interactable = true;
-		thingToEnable.GetComponent<CanvasGroup>().alpha = 1f;
-		thingToEnable.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
+		Debug.Log("1");
+		gameMan.TurnOnDialogue(DialogueToEnable);
 		Debug.Log("2");
-		Instantiate(NextActivateWaveMan);
+		Instantiate(NextActivatePressurePad);
 
 		Debug.Log("3");
 		FindObjectOfType<playerMovement>().transform.position = new Vector2(-25.0f, -50.0f);

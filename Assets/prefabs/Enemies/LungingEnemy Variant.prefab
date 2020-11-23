@@ -15,12 +15,11 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 7
   attackRange: 2
-  patrolling: 0
+  attackDamage: 0
   chasing: 0
-  patrolAreas: []
   waitTime: 2
   startWaitTime: 2
-  die: 0
+  waveManager: {fileID: 0}
   lunging: 0
   lungeRange: 5
   lungeSpeedMultiplier: 2
@@ -60,6 +59,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1195065285696726, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
       propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498568003396690, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
+      propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4317175186754626, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
@@ -120,6 +123,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2231885273710382416, guid: e7ebec1f1e6bbbf46951655dc19689af,
         type: 3}
+    - target: {fileID: 212196177229430804, guid: a9d9fb29acfb73c47996abba9510f842,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114109595865133874, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
     - {fileID: 114762976118300806, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}

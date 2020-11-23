@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 687260008737870913}
   - component: {fileID: 687260008737870918}
   - component: {fileID: 5380509637665912188}
+  - component: {fileID: 2183312313006361027}
   m_Layer: 0
-  m_Name: EnemyWithWeapon
+  m_Name: Miniboss3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,6 +139,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 4
   health: 0
+--- !u!114 &2183312313006361027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687260008737870912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105bbfa49b05801418bec063804d764d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextActivatePressurePad: {fileID: 0}
+  DialogueToEnable: 1
 --- !u!1 &687260009825267490
 GameObject:
   m_ObjectHideFlags: 0

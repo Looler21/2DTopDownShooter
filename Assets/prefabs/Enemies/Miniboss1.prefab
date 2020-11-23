@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 511b614d400a6f94cbcf603015776216, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   chasing: 0
   waitTime: 0
   startWaitTime: 0
-  die: 0
+  waveManager: {fileID: 0}
   firingOrigin: {fileID: 687260009825267491}
   fireRate: 0
 --- !u!114 &5380509637665912188
@@ -151,7 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105bbfa49b05801418bec063804d764d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueToStart: {fileID: 0}
+  NextActivatePressurePad: {fileID: 6852293598204903206, guid: 2a4759b588443a84ba3c7d47d9090a2e,
+    type: 3}
+  DialogueToEnable: 1
 --- !u!1 &687260009825267490
 GameObject:
   m_ObjectHideFlags: 0
