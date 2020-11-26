@@ -10,8 +10,9 @@ public class BossEnemy : Enemy
 	private Transform playerTarget;
 	public Health hp;
 
-	bool attacking = false;
+	public bool attacking = false;
 	bool stahp = false;
+	public bool lookAtPlayer;
 
 	[SerializeField] private float timeBetweenAttacks;
 	[SerializeField] private float attackTimer;
@@ -31,7 +32,7 @@ public class BossEnemy : Enemy
 
 	protected override void FixedUpdate()
     {
-		if(!stomping && !attacking)
+		if(!stomping && !attacking && lookAtPlayer)
 			Look(playerTarget, -90);
 
 		//Update whether the attack is still in progress or not
@@ -55,8 +56,10 @@ public class BossEnemy : Enemy
 				}
 				else
 				{
-					//randomly choose attack
+					//randomly choose attack, make sure its not stomp attack
 					int chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
+					while(attacks[chosenIdx].GetComponent<StompAttack>() != null)
+						chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
 
 					//get ready for attack by going further/closer from player (designated by attack's parameters)
 					//Coroutine here maybe
@@ -67,7 +70,7 @@ public class BossEnemy : Enemy
 					return;
 				}
 			}
-		}
+		}	
 		else
 		{
 			//Reset timers and current state
