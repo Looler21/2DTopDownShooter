@@ -125,6 +125,8 @@ MonoBehaviour:
   waveManager: {fileID: 0}
   firingOrigin: {fileID: 687260009825267491}
   fireRate: 0
+  firingRange: 300
+  fireRateRandomValue: 0.5
 --- !u!114 &5380509637665912188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,8 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105bbfa49b05801418bec063804d764d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextActivatePressurePad: {fileID: 0}
-  DialogueToEnable: 1
+  NextActivatePressurePad: {fileID: 6852293598204903206, guid: c89f0e34df15885478acf95060896c8c,
+    type: 3}
+  IndexOfDialogueToEnable: 3
 --- !u!1 &687260009825267490
 GameObject:
   m_ObjectHideFlags: 0

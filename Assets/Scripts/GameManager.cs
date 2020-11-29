@@ -14,6 +14,21 @@ public class GameManager : MonoBehaviour
 		dialogues[a].GetComponent<CanvasGroup>().blocksRaycasts = true;
 	}
 
+	public void TurnOffDialogue(int a)
+	{
+		dialogues[a].gameObject.SetActive(false);
+	}
+
+	public void TurnOffWave(int a)
+	{
+		waveManagers[a].gameObject.SetActive(false);
+	}
+
+	public void TurnOnWave(int a)
+	{
+		waveManagers[a].gameObject.SetActive(true);
+	}
+
 
 
 }
