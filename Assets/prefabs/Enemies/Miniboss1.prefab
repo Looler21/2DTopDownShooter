@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 687260008737870918}
   - component: {fileID: 5380509637665912188}
   - component: {fileID: 2183312313006361027}
+  - component: {fileID: 4683207071576398296}
   m_Layer: 0
   m_Name: Miniboss1
   m_TagString: Enemy
@@ -102,7 +103,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 1.24
 --- !u!114 &687260008737870918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +157,27 @@ MonoBehaviour:
   NextActivatePressurePad: {fileID: 6852293598204903206, guid: 2a4759b588443a84ba3c7d47d9090a2e,
     type: 3}
   IndexOfDialogueToEnable: 1
+--- !u!50 &4683207071576398296
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687260008737870912}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &687260009825267490
 GameObject:
   m_ObjectHideFlags: 0

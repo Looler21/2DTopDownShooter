@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6978277233313982590}
   - component: {fileID: 7058237846587319950}
   - component: {fileID: 6945706367954807088}
+  - component: {fileID: 8960259928120956846}
   m_Layer: 0
   m_Name: PlayerNinja
   m_TagString: Untagged
@@ -161,9 +162,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8894bbf428d3677409304bb1ccf8b39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
   firingPoint: {fileID: 6945706368220308883}
+  muzzleFlash: {fileID: 0}
   timeSinceLastFire: 0
   plasmaPrefab: {fileID: 0}
+--- !u!114 &8960259928120956846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945263168434489128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec9f1bdf358d614d9a0c7e1d169790e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 0
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!1 &6945365350578342676
 GameObject:
   m_ObjectHideFlags: 0

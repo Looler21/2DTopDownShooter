@@ -1,42 +1,32 @@
 ﻿using System.Collections;
+using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : Health {
 
-    public float hp;
-    public float maxHp;
-    //public Image healthBar;
-    //public Text healthText;
+
+    public Image healthBar;
+    public TextMeshProUGUI healthText;
     // Use this for initialization
     void Start()
     {
-        //healthText.text = (hp / maxHp * 100).ToString() + "%";
-        //healthBar.fillAmount = hp / maxHp;
+        healthText.text = (health / maxHealth * 100).ToString() + "%";
+        healthBar.fillAmount = health / maxHealth;
     }
 
     // Update is called once per frame
     void Update () {
 		
 	}
-    public void TakeDamage(float damage)
-    {
-        hp -= damage;
-        float currentHp = hp / maxHp;
-        //healthText.text = (currentHp * 100).ToString() + "%";
-        //healthBar.fillAmount = currentHp;
-    }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public override void Damage(float damage)
     {
-        Debug.Log("AAAAA");
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("why");
-            TakeDamage(5);
-        }
+        health -= damage;
+        float currentHp = health / maxHealth;
+        healthText.text = (currentHp * 100).ToString() + "%";
+        healthBar.fillAmount = currentHp;
     }
-
 }

@@ -15,9 +15,9 @@ public class Health : MonoBehaviour
 		health = maxHealth;
 	}
 
-	public void Damage(float amount)// takes perscribed amount away
+	public virtual void Damage(float amount)// takes perscribed amount away
 	{
-		health -= health;
+		health -= amount;
 		if(health <= 0)
 		{
 			Die();

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 687260008737870913}
   - component: {fileID: 687260008737870918}
   - component: {fileID: 5380509637665912188}
+  - component: {fileID: 2265521843558233739}
   m_Layer: 0
   m_Name: EnemyWithWeapon
   m_TagString: Enemy
@@ -101,7 +102,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 1.63
 --- !u!114 &687260008737870918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,15 +116,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 0
-  attackRange: 0
-  attackDamage: 0
+  speed: 4
+  attackRange: 10
+  attackDamage: 3
   chasing: 0
   waitTime: 0
   startWaitTime: 0
   waveManager: {fileID: 0}
   firingOrigin: {fileID: 687260009825267491}
   fireRate: 0
+  firingRange: 300
+  fireRateRandomValue: 0.5
 --- !u!114 &5380509637665912188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +141,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 4
   health: 0
+--- !u!50 &2265521843558233739
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687260008737870912}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &687260009825267490
 GameObject:
   m_ObjectHideFlags: 0
