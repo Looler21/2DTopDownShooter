@@ -42,6 +42,9 @@ public class BossEnemy : Enemy
 		//If no attack in progress, check timer if boss can choose another attack
 		if (!attacking)
 		{
+			if (Vector2.Distance(transform.position, target.position) >= stompAtkDistance)
+				MoveTo(playerTarget);
+
 			attackTimer -= Time.deltaTime;
 
 			if (attackTimer <= 0)

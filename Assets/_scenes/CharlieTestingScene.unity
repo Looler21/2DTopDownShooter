@@ -173,10 +173,12 @@ MonoBehaviour:
   rateOfFire: 5
   speed: 500
   angleOfFire: 0
+  angleOfFireOffset: 0
   bulletSpawns: 1
+  dontRotateWithPlayer: 0
   patternCanRotate: 0
   patternRotationSpeed: 0
-  angleOffsetCounter: 0
+  saveBossTransform: 0
 --- !u!1 &180872313
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +239,7 @@ GameObject:
   - component: {fileID: 268648266}
   - component: {fileID: 268648265}
   m_Layer: 0
-  m_Name: HalfCircleProjectileAttack_Test
+  m_Name: CircleProjectileAttack_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,14 +260,16 @@ MonoBehaviour:
   attackIsActive: 0
   projectilePrefab: {fileID: 5330119999222279207, guid: a9b43cd77e9acdc4c9e839a3a135d195,
     type: 3}
-  duration: 5
-  rateOfFire: 3
-  speed: 100
-  angleOfFire: 180
-  bulletSpawns: 10
-  patternCanRotate: 0
-  patternRotationSpeed: 5
-  angleOffsetCounter: 0
+  duration: 10
+  rateOfFire: 10
+  speed: 200
+  angleOfFire: 360
+  angleOfFireOffset: 10
+  bulletSpawns: 5
+  dontRotateWithPlayer: 1
+  patternCanRotate: 1
+  patternRotationSpeed: 1000
+  saveBossTransform: 0
 --- !u!4 &268648266
 Transform:
   m_ObjectHideFlags: 0
@@ -726,6 +730,62 @@ Transform:
   m_Father: {fileID: 323210802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1185090691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1185090692}
+  - component: {fileID: 1185090693}
+  m_Layer: 0
+  m_Name: FlowerProjectileAttack_Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1185090692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185090691}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2142877540}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1185090693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185090691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3262f8b8ce80eb4083cbd846a3ef67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackIsActive: 0
+  projectilePrefab: {fileID: 5330119999222279207, guid: a9b43cd77e9acdc4c9e839a3a135d195,
+    type: 3}
+  duration: 3
+  rateOfFire: 10
+  speed: 300
+  angleOfFire: 360
+  angleOfFireOffset: 0
+  bulletSpawns: 5
+  dontRotateWithPlayer: 1
+  patternCanRotate: 1
+  patternRotationSpeed: 500
+  saveBossTransform: 0
 --- !u!1001 &1238200165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -908,10 +968,12 @@ MonoBehaviour:
   rateOfFire: 5
   speed: 500
   angleOfFire: 10
+  angleOfFireOffset: 100
   bulletSpawns: 5
+  dontRotateWithPlayer: 0
   patternCanRotate: 0
   patternRotationSpeed: 0
-  angleOffsetCounter: 0
+  saveBossTransform: 0
 --- !u!1 &1698279760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,12 +1217,11 @@ MonoBehaviour:
   startWaitTime: 0
   waveManager: {fileID: 0}
   attacks:
-  - {fileID: 180872315}
-  - {fileID: 268648265}
-  - {fileID: 1397280712}
-  - {fileID: 90227197}
+  - {fileID: 1185090693}
   playerManager: {fileID: 589570630}
   hp: {fileID: 0}
+  attacking: 0
+  lookAtPlayer: 0
   timeBetweenAttacks: 2
   attackTimer: 0
   stomping: 0
@@ -1321,6 +1382,7 @@ Transform:
   - {fileID: 268648266}
   - {fileID: 1397280711}
   - {fileID: 90227196}
+  - {fileID: 1185090692}
   m_Father: {fileID: 1888351736}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

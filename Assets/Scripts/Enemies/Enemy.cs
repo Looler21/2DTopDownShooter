@@ -67,9 +67,9 @@ public class Enemy : MonoBehaviour {
         }
 		*/
 
-        if (chasing)		//TODO - prone to chasing and getting stuck through walls
-        {
-			float distanceToPlayer = Vector2.Distance(transform.position, target.position);
+		float distanceToPlayer = Vector2.Distance(transform.position, target.position);
+		if (chasing)        //TODO - prone to chasing and getting stuck through walls
+		{
 			Look(target);
 			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
@@ -78,18 +78,25 @@ public class Enemy : MonoBehaviour {
 				Attack(target);
 			}
 		}
+		else if(distanceToPlayer >= attackRange)
+		{
+			MoveTo(target);
+		}
 	}
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-		Debug.Log("I touched something");
         if (collision.gameObject.CompareTag("Player"))
         {
             //patrolling = false;
             chasing = true;
-			Debug.Log("I am chasing the player");
         }
     }
+
+	protected virtual void MoveTo(Transform target)
+	{
+		transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+	}
 
 	protected virtual void Look(Transform toLook, float degOffset)
 	{

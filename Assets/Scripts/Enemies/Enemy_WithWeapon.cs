@@ -9,7 +9,10 @@ public class Enemy_WithWeapon : Enemy
 	public float fireRate;			// Can customize enemy fire rate on a per-enemy basis, easier to balance easier levels vs harder ones?
 	private float timeSinceLastFire;
 
-	private bool enemyInVision;
+	public float firingRange = 300f;
+	private bool enemyInRange;
+
+	public float fireRateRandomValue = 0.5f;	//set to the max/min that an enemy can fire?
 
 	protected override void Start()
 	{
@@ -30,34 +33,41 @@ public class Enemy_WithWeapon : Enemy
 	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
+		Look(target);
 
 		timeSinceLastFire += Time.deltaTime;
+
+		if (Vector2.Distance(transform.position, target.position) <= firingRange)
+			enemyInRange = true;
+		else
+			enemyInRange = false;
 		
-		if (enemyInVision)
+		if (enemyInRange)
 		{
-			Look(target);
 			if (timeSinceLastFire >= fireRate &&
-				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire,300.0f) )
+				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire, 300f) )
 			{
-				timeSinceLastFire = 0f;		//Bullet was successfully shot from weapon.Shoot(), so reset this counter
+				timeSinceLastFire = 0f;     //Bullet was successfully shot from weapon.Shoot(), so reset this counter
+				timeSinceLastFire += Random.Range(-fireRateRandomValue, fireRateRandomValue);	//randomly shoot earlier or later
 			}
 		}
 	}
 
 	private Vector2 Recoil(Vector2 targetPosition, float spread = 0.05f)		//could move this to baseweapon class - or just let this class handle how skilled each enemy is?
 	{
-		//Slightly offset target position left/right to simulate innacuracy
+		//Slightly offset target position left/right/up/down to simulate innacuracy
 		targetPosition.x += Random.Range(-spread, spread);
 		targetPosition.y += Random.Range(-spread, spread);
 		return targetPosition;
 	}
 
+	/*
 	protected override void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.tag == "Player")
 		{
 			//Debug.Log("I see someone");
-			enemyInVision = true;
+			enemyInRange = true;
 			//patrolling = false;
 			chasing = false;
 			
@@ -70,9 +80,10 @@ public class Enemy_WithWeapon : Enemy
 		if (other.tag == "Player")
 		{
 			//Debug.Log("I can't shoot the player anymore. I will attempt to chase them.");
-			enemyInVision = false;
+			enemyInRange = false;
 			//patrolling = false;
 			chasing = true;
 		}
 	}
+	*/
 }

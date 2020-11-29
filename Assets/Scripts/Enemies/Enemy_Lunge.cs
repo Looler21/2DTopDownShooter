@@ -25,18 +25,10 @@ public class Enemy_Lunge : Enemy
 	{
 		//Base enemy class update
 		//base.Update();		//if you double up on the update, it makes for a really cool effect jiggly effect, but i dont think the double code is good - also doubles their movement speed
-
+		
 		if(chasing)
 		{
 			distanceToPlayer = Vector2.Distance(transform.position, target.position);
-
-			/*
-			if (distanceToPlayer <= lungeRange)
-			{
-				lunging = true;
-				lungeLocation = target.position;
-			}
-			*/
 
 			if (lunging)
 			{
@@ -44,14 +36,14 @@ public class Enemy_Lunge : Enemy
 				if (distanceToPlayer <= attackRange)
 				{
 					//Debug.Log("Lunged and hit");
-					//Attack(target);
+					Attack(target);
 				}
 			}
 			else
 			{
 				//TODO - if its time during a random range, dodge to the side every x seconds during chasing/alert/being shot at(?)
 
-				base.Look(target);
+				base.Look(target, 90f);
 
 				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
@@ -61,6 +53,10 @@ public class Enemy_Lunge : Enemy
 					lungeLocation = target.position;
 				}
 			}
+		}
+		else
+		{
+			MoveTo(target);
 		}
 	}
 
