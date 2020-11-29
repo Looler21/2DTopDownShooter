@@ -103,7 +103,6 @@ public class ProjectileAttack : BossAttack
 					ShootWaveOfBullets(savedTransform, angleOffsetCounter);
 				else
 				*/
-				Debug.Log(angleOfFireOffset);
 				ShootWaveOfBullets(transform, angleOffsetCounter, angleOfFireOffset, 180f, 180f);
 
 				rateOfFire_timer = 0f;

@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour {
 		}
 
 		if(attackDamage <= 0)
-			Debug.LogWarning("WARNING: Damage is <= 0 for this enemy. Will not do any damage to players.");
+			Debug.LogWarning("WARNING: Damage is <= 0 for enemy: " + gameObject.name + ". Will not do any damage to players.");
 	}
 
     protected virtual void FixedUpdate()

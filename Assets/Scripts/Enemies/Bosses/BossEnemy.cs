@@ -11,15 +11,16 @@ public class BossEnemy : Enemy
 	public Health hp;
 
 	public bool attacking = false;
-	bool stahp = false;
-	public bool lookAtPlayer;
+	[HideInInspector] public bool lookAtPlayer = true;		//generally will be set from its attacks; some attacks may require boss to stop looking at player
 
 	[SerializeField] private float timeBetweenAttacks;
 	[SerializeField] private float attackTimer;
 
 	private float stompAtkDistance = 4.0f;
 	public bool stomping = false;
-	private BossAttack stompAttack;		//just drag and drop the stompAttack script into the attacks list, just like any other BossAttack
+	private BossAttack stompAttack;     //just drag and drop the stompAttack script into the attacks list, just like any other BossAttack
+
+	public float startupDelayAttack;	//set this to delay its first attack when it first spawns
 
 	protected override void Start()
 	{
@@ -28,6 +29,9 @@ public class BossEnemy : Enemy
 		playerTarget = playerManager.GetComponentInChildren<playerShooting>().transform;
 
 		StompAttackStartupChecks();
+
+		attackTimer += startupDelayAttack;
+		lookAtPlayer = true;
 	}
 
 	protected override void FixedUpdate()
