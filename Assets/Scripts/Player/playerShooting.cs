@@ -12,6 +12,8 @@ public class playerShooting : MonoBehaviour {
 	private BaseWeapon weaponSniper;
 	private BaseWeapon weaponPlasma;
 
+	private SpriteRenderer sr;
+
 	public TextMeshProUGUI ammoText;
 
 	public Transform firingPoint; //Where the bullet will travel/check from (realistic gun)
@@ -24,6 +26,10 @@ public class playerShooting : MonoBehaviour {
 	private bool PlasmaUsable;
 
 	public float timeSinceLastFire = 0;
+
+	public Sprite pistolChar;
+	public Sprite ArChar;
+	public Sprite SniperChar;
 
 	[Tooltip("Prefab for the plasma gun")]
 	public GameObject plasmaPrefab; // projectile prefab for plasma gun
@@ -38,7 +44,8 @@ public class playerShooting : MonoBehaviour {
 
 	private void Start()
 	{
-		SetWeapon(weaponPistol);
+		weapon = weaponPistol;
+		sr = GetComponent<SpriteRenderer>();
 	}
 
 	// Update is called once per frame
@@ -148,6 +155,20 @@ public class playerShooting : MonoBehaviour {
 	{
 		this.weapon = weapon;
 		Debug.Log("Set weapon to " + weapon.GetWeaponClass().ToString());
+		switch (weapon.GetWeaponClass())
+		{
+			case BaseWeapon.WeaponClass.Rifle:
+				sr.sprite = ArChar;
+				break;
+			case BaseWeapon.WeaponClass.Sniper:
+				sr.sprite = SniperChar;
+				break;
+			case BaseWeapon.WeaponClass.Pistol:
+				sr.sprite = pistolChar;
+				break;
+			default:
+				break;
+		}
 	}
 
 	public BaseWeapon GetWeapon() { return weapon; }

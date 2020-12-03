@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2943193483566114709, guid: e7ebec1f1e6bbbf46951655dc19689af,
+  m_Sprite: {fileID: 3417625370458167568, guid: e7ebec1f1e6bbbf46951655dc19689af,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,18 +102,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05975759, y: 0.02750945}
+  m_Offset: {x: -0.011642545, y: -0.0017031208}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.57, y: 0.43}
+    oldSize: {x: 0.51, y: 0.41}
     newSize: {x: 0.57, y: 0.46}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9556577, y: 0.94740295}
+  m_Size: {x: 0.5294959, y: 0.43532157}
   m_EdgeRadius: 0
 --- !u!50 &6978277233313982590
 Rigidbody2D:
@@ -164,8 +164,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoText: {fileID: 0}
   firingPoint: {fileID: 6945706368220308883}
-  muzzleFlash: {fileID: 0}
+  muzzleFlash: {fileID: 1765388492470470, guid: 3648ae77f2d117b488e0df491f596c97,
+    type: 3}
   timeSinceLastFire: 0
+  pistolChar: {fileID: 3417625370458167568, guid: e7ebec1f1e6bbbf46951655dc19689af,
+    type: 3}
+  ArChar: {fileID: -1203677103428319131, guid: e7ebec1f1e6bbbf46951655dc19689af, type: 3}
+  SniperChar: {fileID: 702057652663933282, guid: e7ebec1f1e6bbbf46951655dc19689af,
+    type: 3}
   plasmaPrefab: {fileID: 0}
 --- !u!114 &8960259928120956846
 MonoBehaviour:
@@ -254,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6945706368220308880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.72, y: -0.09, z: 0}
+  m_LocalPosition: {x: 0.41, y: -0.059, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6950614168322176732}

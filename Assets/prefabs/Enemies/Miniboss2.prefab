@@ -157,6 +157,8 @@ MonoBehaviour:
   NextActivatePressurePad: {fileID: 6852293598204903206, guid: 6c48475b1d9cfb9469045ffc71ddad66,
     type: 3}
   IndexOfDialogueToEnable: 2
+  WeaponToDrop: {fileID: 8543589742653054334, guid: df0736aa4eedd2d46b5a8031253b8c80,
+    type: 3}
 --- !u!50 &8707278326418862069
 Rigidbody2D:
   serializedVersion: 4
