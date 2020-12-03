@@ -119,7 +119,7 @@ public class Enemy : MonoBehaviour {
 
 	protected virtual void Attack(Transform playerManager)
 	{
-		Health player = playerManager.GetComponent<Health>();
+		PlayerHealth player = playerManager.GetComponent<PlayerHealth>();
 		player.Damage(attackDamage);
 	}
 

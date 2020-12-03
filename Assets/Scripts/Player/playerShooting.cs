@@ -13,6 +13,7 @@ public class playerShooting : MonoBehaviour {
 	private BaseWeapon weaponPlasma;
 
 	private SpriteRenderer sr;
+	private AudioSource au; // Audio Source for gun sound
 
 	public TextMeshProUGUI ammoText;
 
@@ -46,6 +47,7 @@ public class playerShooting : MonoBehaviour {
 	{
 		weapon = weaponPistol;
 		sr = GetComponent<SpriteRenderer>();
+		au = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -90,6 +92,7 @@ public class playerShooting : MonoBehaviour {
 						GameObject thisThing = (GameObject)Instantiate(muzzleFlash, firingOrigin, Quaternion.identity);
 						timeSinceLastFire = 0;
 						Destroy(thisThing, .2f);
+						au.PlayOneShot(au.clip);
 					}
 					
 				}else if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.projectile)
