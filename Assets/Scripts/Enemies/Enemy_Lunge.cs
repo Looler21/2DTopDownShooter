@@ -14,11 +14,21 @@ public class Enemy_Lunge : Enemy
 	public float distanceToPlayer;
 	public float distanceToLunge;
 
+	public float attackRate;	//how many times per second
+	private float attackTimer;
+
 	protected override void Start()
 	{
 		base.Start();
 
 		lungeSpeedMultiplier *= speed;
+
+		if(attackRate <= 0)
+		{
+			Debug.LogWarning("Attack rate for enemy: " + gameObject.name + " is <= 0. Defaulting to 1 atk/sec.");
+			attackRate = 1f;
+		}
+		attackRate = 1 / attackRate;    //attacks per second
 	}
 
 	protected override void FixedUpdate()
@@ -35,15 +45,18 @@ public class Enemy_Lunge : Enemy
 				LungeAt(lungeLocation);
 				if (distanceToPlayer <= attackRange)
 				{
-					//Debug.Log("Lunged and hit");
-					Attack(target);
+					if (attackTimer > attackRate)
+					{
+						Attack(target);
+						attackTimer = 0f;
+					}
 				}
 			}
 			else
 			{
 				//TODO - if its time during a random range, dodge to the side every x seconds during chasing/alert/being shot at(?)
 
-				base.Look(target, 90f);
+				base.Look(target, spriteOffset);
 
 				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
@@ -52,6 +65,8 @@ public class Enemy_Lunge : Enemy
 					lunging = true;
 					lungeLocation = target.position;
 				}
+				
+				attackTimer += Time.deltaTime;
 			}
 		}
 		else
@@ -63,13 +78,12 @@ public class Enemy_Lunge : Enemy
 	protected override void Attack(Transform playerManager)
 	{
 		base.Attack(playerManager);
-		Debug.Log("Child class Attack() called");
 	}
 
 	private void LungeAt(Vector3 location)
 	{
 		distanceToLunge = Vector2.Distance(transform.position, location);
-		if (distanceToLunge > 1)		// if set to 0, they will sometimes break b/c --> 1e-08 > 0
+		if (distanceToLunge > 1f)		// if set to 0, they will sometimes break b/c --> 1e-08 > 0
 		{
 			// Lunge
 			transform.position = Vector2.MoveTowards(transform.position, location, lungeSpeedMultiplier * Time.deltaTime);

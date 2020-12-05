@@ -37,13 +37,16 @@ public class ProjectileAttack : BossAttack
 	[HideInInspector] public bool saveBossTransform;		//used to stop the boss from looking at the player; originally wanted it to save a constant transform so like bullet rotations wouldn't move during the attack
 	private Transform savedTransform;
 
+	public bool randomBulletSpread;
+	public float spreadConstant;
 
+	public float bulletScaleSize = 1f;
+
+	public AudioSource fireSound;
 
 	//public Pattern pattern;
 	//public int[] bossPhasesUsedIn;
-
-
-
+	
 	public override void Do()
 	{
 		attackIsActive = true;
@@ -53,6 +56,9 @@ public class ProjectileAttack : BossAttack
 	{
 		attackIsActive = false;
 		angleOffsetCounter = 0f;
+
+		if (projectilePrefab == null)
+			Debug.LogError("No projectile prefab defined for ProjectileAttack: " + gameObject.name);
 
 		if (bossParent == null)
 		{
@@ -69,6 +75,15 @@ public class ProjectileAttack : BossAttack
 		{
 			Debug.LogWarning("Angle of fire is > 360 degrees. Defaulting to 360.");
 			angleOfFire = 360f;
+		}
+
+		if(spreadConstant >= 1f && randomBulletSpread == true)
+			Debug.LogWarning("Warning: Spread constant is >= 1. Bullets *may* start going in unexpected directions");
+
+		if(bulletScaleSize <= 0f)
+		{
+			Debug.LogWarning("Bullet scale size is <= 0 in attack: " + gameObject.name + ". Defaulting to size 1");
+			bulletScaleSize = 1f;
 		}
 	}
 
@@ -98,12 +113,10 @@ public class ProjectileAttack : BossAttack
 			// Shoot bullets with rate of fire
 			if (rateOfFire_timer >= (1 / rateOfFire))
 			{
-				/*
-				if(dontRotateWithPlayer)
-					ShootWaveOfBullets(savedTransform, angleOffsetCounter);
-				else
-				*/
 				ShootWaveOfBullets(transform, angleOffsetCounter, angleOfFireOffset, 180f, 180f);
+
+				if(fireSound != null)
+					fireSound.PlayOneShot(fireSound.clip);
 
 				rateOfFire_timer = 0f;
 			}
@@ -129,8 +142,10 @@ public class ProjectileAttack : BossAttack
 
 	private void ShootWaveOfBullets(Transform transf, float positionOffset, float firingOffsetDegrees, float spriteAngleOffset = 180f, float bulletAngleOffset = 180f)
 	{
-		//if offset is >= 0, spriteAngleOffset +=, bulletAngleOffset +=, firingAngle +=
-		//Debug.Log(firingOffsetDegrees);
+		//sometimes bullets will collide with other bullets when randomBulletSpread == true, bc they spawn inside eachother
+		//and they collide and mess up sprite rotation, nothing can do since they all run on RigidBodies and AddForce()
+
+
 		if(firingOffsetDegrees > 0f)
 		{
 			spriteAngleOffset += firingOffsetDegrees;
@@ -145,16 +160,23 @@ public class ProjectileAttack : BossAttack
 		
 		//calculate angle between each bullet spawn location
 		float angleStep = (angleOfFire / bulletSpawns);
-
-		//uh i forgot what this does
-		//float firingAngle = spriteAngleOffset - bossParent_rot.z - positionOffset;
+		
 		float firingAngle = spriteAngleOffset - rotationAngle.z - positionOffset;
 		firingAngle -= (angleOfFire / 2) - (firingOffsetDegrees);
 
 		for (int i = 0; i < bulletSpawns; i++)
 		{
-			float x = transf.position.x + Mathf.Sin((firingAngle * Mathf.PI) / 180f);
-			float y = transf.position.y + Mathf.Cos((firingAngle * Mathf.PI) / 180f);
+			float x = transf.position.x;
+			float y = transf.position.y;
+
+			x += Mathf.Sin((firingAngle * Mathf.PI) / 180f);
+			y += Mathf.Cos((firingAngle * Mathf.PI) / 180f);
+			
+			if (randomBulletSpread)
+			{
+				x += Random.Range(-spreadConstant, +spreadConstant);
+				y += Random.Range(-spreadConstant, +spreadConstant);
+			}
 			
 			Vector3 projectileSpawn = new Vector3(x, y, 0f);
 			Vector2 shootDir = (projectileSpawn - transf.position).normalized;
@@ -163,8 +185,14 @@ public class ProjectileAttack : BossAttack
 			float spriteOffset = 0f;
 			float angle = Mathf.Rad2Deg * Mathf.Atan(shootDir.y/ shootDir.x);
 			angle += spriteOffset;
-			GameObject bullet = Instantiate(projectilePrefab, projectileSpawn, Quaternion.Euler(new Vector3(0f,0f,angle)));
-			bullet.GetComponent<Rigidbody2D>().AddForce(shootDir.normalized * speed);
+
+			GameObject bullet;
+			if (projectilePrefab != null)
+			{
+				bullet = Instantiate(projectilePrefab, projectileSpawn, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+				bullet.GetComponent<Rigidbody2D>().AddForce(shootDir.normalized * speed);
+				bullet.transform.localScale = Vector3.one * bulletScaleSize;
+			}
 
 			//increase angle for next bullet in the circle
 			firingAngle += angleStep;

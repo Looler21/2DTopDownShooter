@@ -16,18 +16,24 @@ public class Enemy : MonoBehaviour {
 	public float waitTime;
 	public float startWaitTime;
 
-	[SerializeField] private WaveManager waveManager;
+	[SerializeField] protected WaveManager waveManager;
 	private int areaToPatrol;
+
+	public float spriteOffset;
 
     protected virtual void Start()
     {
-		if(target == null)
-			target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+		if (target == null)
+		{
+			target = GameObject.FindGameObjectsWithTag("PlayerSprite")[0].transform;
+			if(target == null)
+				Debug.LogWarning("Enemy: " + gameObject.name + " cannot find a GameObject with the tag PlayerSprite");
+		}
+		
+			//if(patrolAreas.Length > 0)
+			//	patrolling = true;
 
-		//if(patrolAreas.Length > 0)
-		//	patrolling = true;
-
-        waitTime = startWaitTime;
+			waitTime = startWaitTime;
         //areaToPatrol = Random.Range(0, patrolAreas.Length);
 
 		waveManager = FindObjectOfType<WaveManager>();
@@ -36,16 +42,19 @@ public class Enemy : MonoBehaviour {
 
 		if (speed <= 0)
 		{
-			Debug.LogWarning("WARNING: Speed is 0 for enemy: " + gameObject.name + ". Defaulting to 1 speed");
-			speed = 3f;
+			Debug.LogWarning("WARNING: Speed is 0 for enemy: " + gameObject.name);
 		}
 
 		if(attackDamage <= 0)
 			Debug.LogWarning("WARNING: Damage is <= 0 for enemy: " + gameObject.name + ". Will not do any damage to players.");
+
+		//initialize enemies to chase players on startup
+		chasing = true;
 	}
 
     protected virtual void FixedUpdate()
     {
+
 		/*
         if (patrolling)
         {
@@ -70,7 +79,7 @@ public class Enemy : MonoBehaviour {
 		float distanceToPlayer = Vector2.Distance(transform.position, target.position);
 		if (chasing)        //TODO - prone to chasing and getting stuck through walls
 		{
-			Look(target);
+			Look(target, spriteOffset);
 			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
 			if (distanceToPlayer <= attackRange)
@@ -98,7 +107,7 @@ public class Enemy : MonoBehaviour {
 		transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 	}
 
-	protected virtual void Look(Transform toLook, float degOffset)
+	protected virtual void Look(Transform toLook, float degOffset = 0f)
 	{
 
 		//float rotationSpeed
@@ -110,11 +119,6 @@ public class Enemy : MonoBehaviour {
 		Vector3 dir = toLook.position - transform.position;
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - degOffset;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-	}
-
-	protected virtual void Look(Transform toLook)
-	{
-		Look(toLook, 0f);
 	}
 
 	protected virtual void Attack(Transform playerManager)

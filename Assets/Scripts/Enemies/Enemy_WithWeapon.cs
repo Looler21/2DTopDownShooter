@@ -5,11 +5,12 @@ using UnityEngine;
 public class Enemy_WithWeapon : Enemy
 {
 	public Transform firingOrigin;
+	public GameObject muzzleFlash;
 	private BaseWeapon weapon;
 	public float fireRate;			// Can customize enemy fire rate on a per-enemy basis, easier to balance easier levels vs harder ones?
 	private float timeSinceLastFire;
 
-	public float firingRange = 300f;
+	public float firingRange = 5f;
 	private bool enemyInRange;
 
 	public float fireRateRandomValue = 0.5f;	//set to the max/min that an enemy can fire?
@@ -28,11 +29,14 @@ public class Enemy_WithWeapon : Enemy
 			Debug.LogWarning("WARNING: Fire rate is 0 for enemy: " + gameObject.name + ". Defaulting to 1 shot/sec");
 			fireRate = 1f;
 		}
+
+		if (muzzleFlash == null)
+			Debug.LogWarning("No muzzle flash prefab defined for Enemy_Weapon: " + gameObject.name);
 	}
 
 	protected override void FixedUpdate()
 	{
-		base.FixedUpdate();
+		//base.FixedUpdate();
 		Look(target);
 
 		timeSinceLastFire += Time.deltaTime;
@@ -41,15 +45,30 @@ public class Enemy_WithWeapon : Enemy
 			enemyInRange = true;
 		else
 			enemyInRange = false;
-		
+
 		if (enemyInRange)
 		{
+			MoveTo(target);
+
 			if (timeSinceLastFire >= fireRate &&
-				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire, 300f) )
+				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire, firingRange))
 			{
 				timeSinceLastFire = 0f;     //Bullet was successfully shot from weapon.Shoot(), so reset this counter
-				timeSinceLastFire += Random.Range(-fireRateRandomValue, fireRateRandomValue);	//randomly shoot earlier or later
+				timeSinceLastFire += Random.Range(-fireRateRandomValue, fireRateRandomValue);   //randomly shoot earlier or later
+
+				if (muzzleFlash != null)
+				{
+					//au.PlayOneShot(au.clip);
+					GameObject thisThing = (GameObject)Instantiate(muzzleFlash, firingOrigin.position, Quaternion.identity);
+					Destroy(thisThing, .2f);
+				}
+				
+				
 			}
+		}
+		else
+		{
+			MoveTo(target);
 		}
 	}
 

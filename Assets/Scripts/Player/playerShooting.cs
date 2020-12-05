@@ -111,7 +111,8 @@ public class playerShooting : MonoBehaviour {
 			}
 		}
 
-		ammoText.text = weapon.GetAmmo() + "/" + weapon.GetMaxAmmo();
+		if(ammoText != null)
+			ammoText.text = weapon.GetAmmo() + "/" + weapon.GetMaxAmmo();
 	}
 
 	private GameObject getWeaponProjectilePrefab(BaseWeapon weapon)

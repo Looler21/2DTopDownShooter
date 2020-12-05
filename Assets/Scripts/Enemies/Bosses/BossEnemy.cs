@@ -20,27 +20,36 @@ public class BossEnemy : Enemy
 	public bool stomping = false;
 	private BossAttack stompAttack;     //just drag and drop the stompAttack script into the attacks list, just like any other BossAttack
 
-	public float startupDelayAttack;	//set this to delay its first attack when it first spawns
+	public float startupDelayAttack = 5.0f;	//set this to delay its first attack when it first spawns
 
 	protected override void Start()
 	{
 		base.Start();
 
-		playerTarget = playerManager.GetComponentInChildren<playerShooting>().transform;
+		playerManager = GameObject.FindGameObjectWithTag("Player");
+
+		if(playerManager != null)
+			playerTarget = playerManager.GetComponentInChildren<playerShooting>().transform;
 
 		StompAttackStartupChecks();
 
 		attackTimer += startupDelayAttack;
 		lookAtPlayer = true;
+
+		startupDelayAttack = startupDelayAttack + Time.time;
 	}
 
 	protected override void FixedUpdate()
     {
+		//Beginning, when player hasn't seen boss yet - boss shouldn't attack until visible or its been long enough
+		if (Time.time <= startupDelayAttack && !GetComponent<SpriteRenderer>().isVisible)
+			return;
+
 		if(!stomping && !attacking && lookAtPlayer)
-			Look(playerTarget, -90);
+			Look(playerTarget, spriteOffset);
 
 		//Update whether the attack is still in progress or not
-		if(currentAttack != null)
+		if (currentAttack != null)
 			attacking = currentAttack.isActive();
 
 		//If no attack in progress, check timer if boss can choose another attack

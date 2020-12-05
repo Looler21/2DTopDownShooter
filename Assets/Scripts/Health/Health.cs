@@ -36,11 +36,12 @@ public class Health : MonoBehaviour
 	public void Die()
 	{
 		//do something to die
-		if (transform.CompareTag("Player"))
+		if (transform.CompareTag("Player") || transform.CompareTag("PlayerSprite"))
 		{
 			Destroy(gameObject);
 			//something to impliment here
-		}else if (transform.CompareTag("Enemy"))
+		}
+		else if (transform.CompareTag("Enemy"))
 		{
 			Destroy(gameObject);
 			//something to implement here

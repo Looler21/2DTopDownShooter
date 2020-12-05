@@ -123,14 +123,19 @@ public class BaseWeapon{
 		
 		if(shootType == ShootType.hitscan)
 		{
-			RaycastHit2D hit = Physics2D.Raycast(firingOrigin, mousePosition - firingOrigin, shootingDistance);
+			RaycastHit2D[] hits = Physics2D.RaycastAll(firingOrigin, mousePosition - firingOrigin, shootingDistance);
 
 			Debug.DrawRay(firingOrigin, mousePosition - firingOrigin, Color.red, shootingDistance);
-			
-			if(hit && hit.collider.CompareTag("Enemy"))
+
+			foreach (RaycastHit2D hit in hits)
 			{
-				hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
+				if (hit && hit.collider.CompareTag("Enemy"))
+				{
+					hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
+					hit.transform.gameObject.SendMessage("FlashColor");
+				}
 			}
+
 			
 			return true;
 		}

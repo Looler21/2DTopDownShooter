@@ -41,14 +41,16 @@ MonoBehaviour:
   waitTime: 2
   startWaitTime: 2
   waveManager: {fileID: 0}
+  spriteOffset: 180
   lunging: 0
-  lungeRange: 5
-  lungeSpeedMultiplier: 2
+  lungeRange: 10
+  lungeSpeedMultiplier: 3
   lungeLocation: {x: 0, y: 0}
   lungeCooldown: 1.25
   lungeCooldownTimer: 0
   distanceToPlayer: 0
   distanceToLunge: 0
+  attackRate: 0
 --- !u!114 &8700176903490323616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 58496091342188722, guid: a9d9fb29acfb73c47996abba9510f842,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212196177229430804, guid: a9d9fb29acfb73c47996abba9510f842,
         type: 3}

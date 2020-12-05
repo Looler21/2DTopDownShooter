@@ -19,7 +19,6 @@ public class Explotion : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-
         }
     }
 }
