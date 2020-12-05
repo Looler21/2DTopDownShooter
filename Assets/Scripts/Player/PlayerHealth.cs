@@ -51,7 +51,7 @@ public class PlayerHealth : Health {
 		if (healthBar != null)
 			healthBar.fillAmount = currentHp;
 		
-		if (health < 0)
+		if (health <= 0)
 			Die();
 	}
 }
