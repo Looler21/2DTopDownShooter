@@ -132,7 +132,7 @@ public class BaseWeapon{
 				if (hit && hit.collider.CompareTag("Enemy"))
 				{
 					hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
-					hit.transform.gameObject.SendMessage("FlashColor");
+					hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
 				}
 			}
 

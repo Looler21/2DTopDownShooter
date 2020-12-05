@@ -117,4 +117,11 @@ public class BossEnemy : Enemy
 		else
 			Debug.LogWarning("No stomp attack found, boss " + gameObject.name + " will not use it.");
 	}
+
+	void OnDestroy()
+	{
+		GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+		foreach (GameObject bullet in bullets)
+			Destroy(bullet);
+	}
 }

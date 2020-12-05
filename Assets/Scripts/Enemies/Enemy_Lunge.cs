@@ -15,7 +15,7 @@ public class Enemy_Lunge : Enemy
 	public float distanceToLunge;
 
 	public float attackRate;	//how many times per second
-	private float attackTimer;
+	[SerializeField] private float attackTimer;
 
 	protected override void Start()
 	{
@@ -65,14 +65,14 @@ public class Enemy_Lunge : Enemy
 					lunging = true;
 					lungeLocation = target.position;
 				}
-				
-				attackTimer += Time.deltaTime;
 			}
 		}
 		else
 		{
 			MoveTo(target);
 		}
+
+		attackTimer += Time.deltaTime;
 	}
 
 	protected override void Attack(Transform playerManager)
