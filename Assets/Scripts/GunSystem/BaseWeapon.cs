@@ -139,7 +139,7 @@ public class BaseWeapon{
 						//hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
 
 						Debug.Log(1 * GetDamageMultiplier());
-						hit.transform.gameObject.SendMessage("FlashColor");
+						hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
 						return true;
 					}
 				}

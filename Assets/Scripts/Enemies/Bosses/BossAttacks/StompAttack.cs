@@ -31,7 +31,7 @@ public class StompAttack : BossAttack
 				Debug.LogWarning("No playerMovement found. BossEnemy \"" + transform.root.name + " cannot use its StompAttack.");
 		}
 
-		playerHealth = playerTransform.GetComponentInChildren<Health>();
+		playerHealth = playerTransform.GetComponentInChildren<PlayerHealth>();
 		if (playerHealth == null)
 			Debug.LogWarning("No player Health found. Stomp attack will not to damage.");
 	}
@@ -50,7 +50,7 @@ public class StompAttack : BossAttack
 		GameObject boss = transform.root.gameObject;
 
 		//temporary animation thingy
-		float scale = Mathf.Lerp(1f, 1.5f, 5f);
+		float scale = 7f;
 		boss.GetComponent<Transform>().localScale = new Vector3(scale, scale, 1f);
 
 		// Wait for animation to finish
@@ -77,7 +77,7 @@ public class StompAttack : BossAttack
 		boss.GetComponent<BossEnemy>().stomping = false;
 
 		//reset boss scale
-		boss.GetComponent<Transform>().localScale = new Vector3(1f, 1f, 1f);
+		boss.GetComponent<Transform>().localScale = new Vector3(5f, 5f, 5f);
 
 		attackIsActive = false;
 	}

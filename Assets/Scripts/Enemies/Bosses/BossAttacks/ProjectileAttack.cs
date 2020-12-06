@@ -91,8 +91,11 @@ public class ProjectileAttack : BossAttack
 	{
 		if(attackIsActive)
 		{
+			//gonna spaghetti this one is just in case theres a ConsecutiveAttack where multiple attacks may or may not look at player
+			//bossParent.GetComponent<BossEnemy>().lookAtPlayer = true;
+
 			// If boss must be static when firing this pattern, stop the boss from rotating to look at the player
-			if(saveBossTransform && dontRotateWithPlayer)
+			if (saveBossTransform && dontRotateWithPlayer)
 			{
 				// Stop the boss from looking at the player
 				bossParent.GetComponent<BossEnemy>().lookAtPlayer = false;

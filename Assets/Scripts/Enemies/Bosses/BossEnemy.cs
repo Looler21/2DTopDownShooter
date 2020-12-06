@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossEnemy : Enemy
 {
 	[SerializeField] private BossAttack[] attacks;
-	private BossAttack currentAttack;
+	/*Debug*/ [SerializeField] private BossAttack currentAttack;
 	[SerializeField] private GameObject playerManager;
 	private Transform playerTarget;
 	public Health hp;
@@ -16,11 +16,13 @@ public class BossEnemy : Enemy
 	[SerializeField] private float timeBetweenAttacks;
 	[SerializeField] private float attackTimer;
 
-	private float stompAtkDistance = 4.0f;
+	public float stompAtkDistance = 7.0f;
 	public bool stomping = false;
 	private BossAttack stompAttack;     //just drag and drop the stompAttack script into the attacks list, just like any other BossAttack
 
-	public float startupDelayAttack = 5.0f;	//set this to delay its first attack when it first spawns
+	public float startupDelayAttack = 5.0f; //set this to delay its first attack when it first spawns
+
+	private int previousAttackIdx;
 
 	protected override void Start()
 	{
@@ -37,6 +39,8 @@ public class BossEnemy : Enemy
 		lookAtPlayer = true;
 
 		startupDelayAttack = startupDelayAttack + Time.time;
+
+		previousAttackIdx = -1;
 	}
 
 	protected override void FixedUpdate()
@@ -45,7 +49,19 @@ public class BossEnemy : Enemy
 		if (Time.time <= startupDelayAttack && !GetComponent<SpriteRenderer>().isVisible)
 			return;
 
-		if(!stomping && !attacking && lookAtPlayer)
+		/* Removing stomp attack pretty much
+		//Is player too close? --> Push player back with stomp attack
+		float distance = Vector3.Distance(playerTarget.position, this.transform.position);
+		if (stompAttack != null && distance <= stompAtkDistance)
+		{
+			currentAttack = stompAttack;
+			currentAttack.Do();
+			stomping = currentAttack.attackIsActive;
+			return;
+		}
+		*/
+
+		if (!stomping && lookAtPlayer)
 			Look(playerTarget, spriteOffset);
 
 		//Update whether the attack is still in progress or not
@@ -62,36 +78,42 @@ public class BossEnemy : Enemy
 
 			if (attackTimer <= 0)
 			{
-				//Is player too close? --> Use next attack cycle to push player back with stomp attack
-				float distance = Vector3.Distance(playerTarget.position, this.transform.position);
-				if (stompAttack != null && distance <= stompAtkDistance)
+				//randomly choose attack, make sure its not stomp attack and not previous attack
+				//unless only 1 attack
+				int chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
+
+				if (attacks.Length > 1)
 				{
-					currentAttack = stompAttack;
-					currentAttack.Do();
-					stomping = currentAttack.attackIsActive;
-				}
-				else
-				{
-					//randomly choose attack, make sure its not stomp attack
-					int chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
-					while(attacks[chosenIdx].GetComponent<StompAttack>() != null)
+					while (chosenIdx == previousAttackIdx)      //&& attacks[chosenIdx].GetComponent<StompAttack>() != null)	//throwing out the stomp attack
+					{
 						chosenIdx = Mathf.RoundToInt(Random.Range(0, attacks.Length));
-
-					//get ready for attack by going further/closer from player (designated by attack's parameters)
-					//Coroutine here maybe
-
-					//do that attack once distance is far enough
-					currentAttack = attacks[chosenIdx];
-					currentAttack.Do();
-					return;
+					}
 				}
+
+				//update previous attack
+				previousAttackIdx = chosenIdx;
+
+				//get ready for attack by going further/closer from player (designated by attack's parameters)
+				//Coroutine here maybe
+
+				//do that attack once distance is far enough
+				currentAttack = attacks[chosenIdx];
+				currentAttack.Do();
+
+				//Reset attack timer
+				attackTimer = timeBetweenAttacks;
+				//Randomly make the boss shoot earlier/later by a second
+				float earlierlater = 1.0f;
+				if (earlierlater >= timeBetweenAttacks)
+					Debug.LogWarning("Warning random value of time between attacks is bigger than the actual time between attacks");
+				attackTimer += Random.Range(-earlierlater, earlierlater);
+
+				return;
 			}
 		}	
 		else
 		{
-			//Reset timers and current state
-			attackTimer = timeBetweenAttacks;
-			attacking = false;
+			//???
 		}
     }
 
