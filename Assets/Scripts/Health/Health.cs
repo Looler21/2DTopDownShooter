@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
 	public virtual void Damage(float amount)// takes perscribed amount away
 	{
 		health -= amount;
+		Debug.Log(gameObject.name + " took " + amount + " damage");
 		if(health <= 0)
 		{
 			Die();
@@ -39,6 +40,7 @@ public class Health : MonoBehaviour
 		if (transform.CompareTag("Player") || transform.CompareTag("PlayerSprite"))
 		{
 			Destroy(gameObject);
+			Application.Quit();
 			//something to impliment here
 		}
 		else if (transform.CompareTag("Enemy"))

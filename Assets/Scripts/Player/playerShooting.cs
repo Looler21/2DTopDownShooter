@@ -12,6 +12,7 @@ public class playerShooting : MonoBehaviour {
 	private BaseWeapon weaponSniper;
 	private BaseWeapon weaponPlasma;
 
+	private PlayerHealth ph;
 	private SpriteRenderer sr;
 	private AudioSource au; // Audio Source for gun sound
 
@@ -48,6 +49,7 @@ public class playerShooting : MonoBehaviour {
 		weapon = weaponPistol;
 		sr = GetComponent<SpriteRenderer>();
 		au = GetComponent<AudioSource>();
+		ph = GetComponent<PlayerHealth>();
 	}
 
 	// Update is called once per frame
@@ -81,18 +83,19 @@ public class playerShooting : MonoBehaviour {
 		{
 			if (weapon != null)
 			{
-				if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.hitscan)
+				if (BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.hitscan)
 				{
 					firingOrigin = new Vector2(firingPoint.position.x, firingPoint.position.y);
 					mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
 						Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
-					if(weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire, weapon.GetShootDistance()))
+					GameObject thisThing = Instantiate(muzzleFlash, firingOrigin, Quaternion.identity);
+					Destroy(thisThing, 0.2f);
+					au.PlayOneShot(au.clip);
+
+					if (weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire, weapon.GetShootDistance()))
 					{
-						GameObject thisThing = (GameObject)Instantiate(muzzleFlash, firingOrigin, Quaternion.identity);
 						timeSinceLastFire = 0;
-						Destroy(thisThing, .2f);
-						au.PlayOneShot(au.clip);
 					}
 					
 				}else if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.projectile)
@@ -184,6 +187,9 @@ public class playerShooting : MonoBehaviour {
 			//pickup Plasma Gun Handler
 			SetPlasmaUsable();
 			Destroy(collision.gameObject);
+			ph.health = ph.maxHealth;
+			ph.healthText.text = ((ph.health / ph.maxHealth) * 100).ToString() + "%";
+			ph.healthBar.fillAmount = (ph.health / ph.maxHealth);
 		}
 
 		if (collision.GetComponent<PickupRifle>() != null)
@@ -191,6 +197,9 @@ public class playerShooting : MonoBehaviour {
 			//pickup Rifle Handler
 			SetRifleUsable();
 			Destroy(collision.gameObject);
+			ph.health = ph.maxHealth;
+			ph.healthText.text = ((ph.health / ph.maxHealth) * 100).ToString() + "%";
+			ph.healthBar.fillAmount = (ph.health / ph.maxHealth);
 		}
 
 		if (collision.GetComponent<PickupSniper>() != null)
@@ -198,6 +207,9 @@ public class playerShooting : MonoBehaviour {
 			//pickup Plasma Gun Handler
 			SetSniperUsable();
 			Destroy(collision.gameObject);
+			ph.health = ph.maxHealth;
+			ph.healthText.text = ((ph.health / ph.maxHealth) * 100).ToString() + "%";
+			ph.healthBar.fillAmount = (ph.health / ph.maxHealth);
 		}
 	}
 }

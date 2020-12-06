@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 3358669062581680492}
   - component: {fileID: 3358669062581680493}
   - component: {fileID: 3358669062581680494}
+  - component: {fileID: 1586954511613552806}
   m_Layer: 0
   m_Name: Miniboss_Arena1
   m_TagString: Enemy
@@ -400,8 +401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 0
-  attackRange: 0
+  speed: 5
+  attackRange: 1
   attackDamage: 1
   chasing: 0
   waitTime: 0
@@ -462,6 +463,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashForSeconds: 0.1
+--- !u!114 &1586954511613552806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358669062581680495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105bbfa49b05801418bec063804d764d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextActivatePressurePad: {fileID: 6852293598204903206, guid: 2a4759b588443a84ba3c7d47d9090a2e,
+    type: 3}
+  IndexOfDialogueToEnable: 1
+  WeaponToDrop: {fileID: 6865324213290198560, guid: 25a1ce2328b5c3040a3b1c774d730197,
+    type: 3}
 --- !u!1 &3358669063205187289
 GameObject:
   m_ObjectHideFlags: 0

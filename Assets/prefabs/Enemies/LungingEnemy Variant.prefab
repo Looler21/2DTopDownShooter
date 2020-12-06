@@ -50,7 +50,7 @@ MonoBehaviour:
   lungeCooldownTimer: 0
   distanceToPlayer: 0
   distanceToLunge: 0
-  attackRate: 0
+  attackRate: 0.5
 --- !u!114 &8700176903490323616
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,6 +44,7 @@ public class PlayerHealth : Health {
 		health -= damage;
 
 		float currentHp = health / maxHealth;
+		Debug.Log(currentHp);
 
 		if (healthText != null)
 			healthText.text = (currentHp * 100).ToString() + "%";

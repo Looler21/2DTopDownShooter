@@ -21,7 +21,7 @@ public class DestroyWave : MonoBehaviour
 		gameMan.TurnOnDialogue(IndexOfDialogueToEnable);
 		Instantiate(NextActivatePressurePad);
 
-		FindObjectOfType<playerMovement>().transform.position = FindObjectOfType<SpawnPoint>().gameObject.transform.position;
+		FindObjectOfType<playerShooting>().transform.position = FindObjectOfType<SpawnPoint>().gameObject.transform.position;
 		Instantiate<GameObject>(WeaponToDrop, FindObjectOfType<WeaponSpawnPoint>().gameObject.transform);
 	}
 }

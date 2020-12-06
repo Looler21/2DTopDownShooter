@@ -94,7 +94,7 @@ public class BaseWeapon{
 		{
 			default:
 			case WeaponClass.Pistol:
-				return 20.0f;
+				return 10.0f;
 			case WeaponClass.Rifle:
 				return 15.0f;
 			case WeaponClass.Sniper:
@@ -110,18 +110,19 @@ public class BaseWeapon{
 
 	public bool Shoot(Vector2 mousePosition, Vector2 firingOrigin, float timeSinceLastFire, float shootingDistance)
 	{
-		if (!checkIfAvailableAmmo()) {
+		if(!(GetFireRate() <= timeSinceLastFire)) {
+			Debug.Log("fire rate failed");
+			return false; 
+		}
+
+		if (!checkIfAvailableAmmo())
+		{
 			Reload();
 			Debug.Log("Check ammo failed");
 			return false;
 		}
 
-		if(!(GetFireRate() <= timeSinceLastFire)) {
-			Debug.Log("fire rate failed");
-			return false; 
-		}
-		
-		if(shootType == ShootType.hitscan)
+		if (shootType == ShootType.hitscan)
 		{
 			RaycastHit2D[] hits = Physics2D.RaycastAll(firingOrigin, mousePosition - firingOrigin, shootingDistance);
 
@@ -129,15 +130,22 @@ public class BaseWeapon{
 
 			foreach (RaycastHit2D hit in hits)
 			{
-				if (hit && hit.collider.CompareTag("Enemy"))
+				if (hit)
 				{
-					hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
-					hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
-				}
-			}
+					if (hit.collider.CompareTag("Enemy"))
+					{
+						hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
 
-			
-			return true;
+						//hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
+
+						Debug.Log(1 * GetDamageMultiplier());
+						hit.transform.gameObject.SendMessage("FlashColor");
+						return true;
+					}
+				}
+				
+			}
+			return false;
 		}
 		else if(shootType == ShootType.projectile)
 		{
