@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2183312313006361027}
   - component: {fileID: 8707278326418862069}
   m_Layer: 0
-  m_Name: Miniboss2
+  m_Name: DontTouch
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,9 @@ MonoBehaviour:
   waitTime: 0
   startWaitTime: 0
   waveManager: {fileID: 0}
+  spriteOffset: 0
   firingOrigin: {fileID: 687260009825267491}
+  muzzleFlash: {fileID: 0}
   fireRate: 0
   firingRange: 300
   fireRateRandomValue: 0.5

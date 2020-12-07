@@ -734,10 +734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105bbfa49b05801418bec063804d764d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextActivatePressurePad: {fileID: 6852293598204903206, guid: 2a4759b588443a84ba3c7d47d9090a2e,
+  NextActivatePressurePad: {fileID: 6852293598204903206, guid: 6c48475b1d9cfb9469045ffc71ddad66,
     type: 3}
-  IndexOfDialogueToEnable: 1
-  WeaponToDrop: {fileID: 6865324213290198560, guid: 25a1ce2328b5c3040a3b1c774d730197,
+  IndexOfDialogueToEnable: 2
+  WeaponToDrop: {fileID: 8543589742653054334, guid: df0736aa4eedd2d46b5a8031253b8c80,
     type: 3}
 --- !u!1 &8105158454013053625
 GameObject:

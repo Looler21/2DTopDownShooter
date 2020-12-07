@@ -82,7 +82,7 @@ public class BaseWeapon{
 			case WeaponClass.Rifle:
 				return .7f;
 			case WeaponClass.Sniper:
-				return 4f;
+				return 7f;
 			case WeaponClass.Plasma:
 				return 3.2f;
 		}
@@ -96,7 +96,7 @@ public class BaseWeapon{
 			case WeaponClass.Pistol:
 				return 10.0f;
 			case WeaponClass.Rifle:
-				return 15.0f;
+				return 20.0f;
 			case WeaponClass.Sniper:
 				return 1000.0f;
 

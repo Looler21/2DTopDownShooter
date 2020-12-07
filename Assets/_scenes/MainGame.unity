@@ -990,7 +990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 303, y: 184}
+  m_AnchoredPosition: {x: 178, y: 184}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265918539
@@ -1906,6 +1906,12 @@ PrefabInstance:
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 265918539}
+    - target: {fileID: 839858377390305591, guid: eea606b1fc3b5e741906f4a126e31fda,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 840042478325408805, guid: eea606b1fc3b5e741906f4a126e31fda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -73831,28 +73837,22 @@ CompositeCollider2D:
       - X: 1720000000
         Y: -800000000
       - X: 1720000000
-        Y: -120000100
-      - X: 1800000041
-        Y: -120000100
-      - X: 1800000100
-        Y: -120000041
-      - X: 1800000100
-        Y: 440000041
-      - X: 1800000041
-        Y: 440000100
+        Y: -120000000
+      - X: 1800000000
+        Y: -120000000
+      - X: 1800000000
+        Y: 440000000
       - X: 1760000000
-        Y: 440000100
+        Y: 440000000
       - X: 1760000000
         Y: 1240000000
       - X: -1440000000
         Y: 1240000000
       - X: -1440000000
-        Y: 440000100
-      - X: -1640000041
-        Y: 440000100
-      - X: -1640000100
-        Y: 440000041
-      - X: -1640000100
+        Y: 440000000
+      - X: -1640000000
+        Y: 440000000
+      - X: -1640000000
         Y: -800000000
       - X: -1800000000
         Y: -800000000
@@ -73917,15 +73917,15 @@ CompositeCollider2D:
     - - {x: 187.99997, y: -220}
       - {x: 187.99997, y: -80}
       - {x: 172, y: -79.99997}
-      - {x: 172.00003, y: -12.00001}
-      - {x: 180.00002, y: -11.999974}
-      - {x: 179.99997, y: 44.00001}
-      - {x: 176, y: 44.00004}
+      - {x: 172.00003, y: -12}
+      - {x: 180, y: -11.99997}
+      - {x: 179.99997, y: 44}
+      - {x: 176, y: 44.00003}
       - {x: 175.99997, y: 124}
       - {x: -144, y: 123.99998}
-      - {x: -144.00003, y: 44.00001}
-      - {x: -164.00002, y: 43.999973}
-      - {x: -164.00005, y: -80}
+      - {x: -144.00003, y: 44}
+      - {x: -164, y: 43.999973}
+      - {x: -164.00003, y: -80}
       - {x: -180, y: -80.00003}
       - {x: -179.99997, y: -220}
     - - {x: 8, y: -55.99997}
@@ -77598,9 +77598,9 @@ MonoBehaviour:
   wavesStarted: 0
   spawnNextWave: 0
   waves:
-  - waveName: King
+  - waveName: King-Boss
     enemyPrefabs:
-    - {fileID: 1195065285696726, guid: a9d9fb29acfb73c47996abba9510f842, type: 3}
+    - {fileID: 5242315670222357969, guid: 14809cb907d436e4bbf69fdc815ca1c4, type: 3}
     spawns:
     - {fileID: 302058732}
   enemiesAlive: 0
@@ -77805,7 +77805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 197, y: -51.7}
+  m_AnchoredPosition: {x: 63, y: -51.7}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352541756
@@ -78591,11 +78591,24 @@ MonoBehaviour:
   wavesStarted: 0
   spawnNextWave: 0
   waves:
-  - waveName: TempMiniBoss
+  - waveName: 3-1
     enemyPrefabs:
-    - {fileID: 687260008737870912, guid: 10af44193959dce408b346192cc89012, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
     - {fileID: 2001001210}
+  - waveName: 3-2
+    enemyPrefabs:
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    spawns:
+    - {fileID: 2001001210}
+    - {fileID: 1722008261}
+    - {fileID: 1489918177}
+    - {fileID: 1216719597}
   enemiesAlive: 0
   waveNum: 0
 --- !u!1 &1684333515
@@ -78632,7 +78645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 202.8, y: -12.4}
+  m_AnchoredPosition: {x: 63, y: -12.4}
   m_SizeDelta: {x: 100, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1684333517
@@ -78808,11 +78821,27 @@ MonoBehaviour:
   wavesStarted: 0
   spawnNextWave: 0
   waves:
-  - waveName: TempMiniBoss2
+  - waveName: 2-1
     enemyPrefabs:
-    - {fileID: 687260008737870912, guid: dcc64d41e757b4349889d0164174bcfd, type: 3}
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
     spawns:
     - {fileID: 1489918177}
+    - {fileID: 1216719597}
+  - waveName: 2-2
+    enemyPrefabs:
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    spawns:
+    - {fileID: 1489918177}
+    - {fileID: 2001001210}
+    - {fileID: 1216719597}
+  - waveName: 2-MiniBoss
+    enemyPrefabs:
+    - {fileID: 8105158453489949967, guid: 3f9533866bd47dd468265ad78af78f74, type: 3}
+    spawns:
+    - {fileID: 302058732}
   enemiesAlive: 0
   waveNum: 0
 --- !u!1 &1833341019
@@ -79094,7 +79123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.900024, y: 21}
+  m_AnchoredPosition: {x: -1, y: -5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1919044828
@@ -79316,7 +79345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 331, y: -144.7}
+  m_AnchoredPosition: {x: 188, y: -144.7}
   m_SizeDelta: {x: 373.92072, y: 307.35538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2131761100
@@ -79450,6 +79479,21 @@ PrefabInstance:
       propertyPath: waves.Array.data[2].spawns.Array.data[0]
       value: 
       objectReference: {fileID: 302058732}
+    - target: {fileID: 6514675735943641592, guid: 99fa0f4b262c9864092742dbfd4b99a6,
+        type: 3}
+      propertyPath: waves.Array.data[0].waveName
+      value: 1-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514675735943641592, guid: 99fa0f4b262c9864092742dbfd4b99a6,
+        type: 3}
+      propertyPath: waves.Array.data[1].waveName
+      value: 1-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514675735943641592, guid: 99fa0f4b262c9864092742dbfd4b99a6,
+        type: 3}
+      propertyPath: waves.Array.data[2].waveName
+      value: 1-boss
+      objectReference: {fileID: 0}
     - target: {fileID: 6514675735943641593, guid: 99fa0f4b262c9864092742dbfd4b99a6,
         type: 3}
       propertyPath: m_LocalPosition.x
