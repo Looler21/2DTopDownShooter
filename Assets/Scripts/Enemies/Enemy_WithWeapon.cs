@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy_WithWeapon : Enemy
 {
+	public GameObject projectilePrefab;
+	public float bulletDamage = 1f;
+	public float bulletSpeed;
+	public float bulletScaleSize = 10f;
+	public AudioSource fireSound;
 	public Transform firingOrigin;
 	public GameObject muzzleFlash;
 	private BaseWeapon weapon;
@@ -31,7 +36,13 @@ public class Enemy_WithWeapon : Enemy
 		}
 
 		if (muzzleFlash == null)
-			Debug.LogWarning("No muzzle flash prefab defined for Enemy_Weapon: " + gameObject.name);
+			Debug.LogWarning("No muzzle flash prefab defined for Enemy_WithWeapon: " + gameObject.name);
+
+		if (projectilePrefab == null)
+			Debug.LogError("Error, no projectile prefab defined for Enemy_WithWeapon: " + gameObject.name);
+
+		if (firingOrigin == null)
+			Debug.LogError("Error, no firingOrigin defined for Enemy_WithWeapon: " + gameObject.name);
 	}
 
 	protected override void FixedUpdate()
@@ -50,20 +61,22 @@ public class Enemy_WithWeapon : Enemy
 		{
 			MoveTo(target);
 
-			if (timeSinceLastFire >= fireRate &&
-				weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire, firingRange))
+			if (timeSinceLastFire >= fireRate) //weapon.Shoot(Recoil(target.position), firingOrigin.position, timeSinceLastFire, firingRange))
 			{
+				//spawn a projectile, launch it towards the player
+				ShootAt(target, firingOrigin);
+
 				timeSinceLastFire = 0f;     //Bullet was successfully shot from weapon.Shoot(), so reset this counter
 				timeSinceLastFire += Random.Range(-fireRateRandomValue, fireRateRandomValue);   //randomly shoot earlier or later
 
 				if (muzzleFlash != null)
 				{
-					//au.PlayOneShot(au.clip);
-					GameObject thisThing = (GameObject)Instantiate(muzzleFlash, firingOrigin.position, Quaternion.identity);
-					Destroy(thisThing, .2f);
+					GameObject flash = (GameObject)Instantiate(muzzleFlash, firingOrigin.position, Quaternion.identity);
+					Destroy(flash, .2f);
 				}
-				
-				
+
+				if (fireSound != null)
+					fireSound.PlayOneShot(fireSound.clip);
 			}
 		}
 		else
@@ -105,4 +118,24 @@ public class Enemy_WithWeapon : Enemy
 		}
 	}
 	*/
+
+
+	private void ShootAt(Transform target, Transform shootingPoint)  //float positionOffset, float firingOffsetDegrees, float spriteAngleOffset = 180f, float bulletAngleOffset = 180f)
+	{
+		Vector2 shootDir = (target.position - transform.root.position).normalized;
+
+		//try to align the bullet with the direction it's going
+		float angle = Mathf.Rad2Deg * Mathf.Atan(shootDir.y / shootDir.x);
+		angle += spriteOffset;
+
+		GameObject bullet;
+		if (projectilePrefab != null)
+		{
+			bullet = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+			bullet.GetComponent<Rigidbody2D>().AddForce(shootDir.normalized * bulletSpeed);
+			bullet.transform.localScale = Vector3.one * bulletScaleSize;
+
+			bullet.GetComponent<Bullet>().damageValue = bulletDamage;
+		}
+	}
 }
