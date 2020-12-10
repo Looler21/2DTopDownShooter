@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DestroyWave : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DestroyWave : MonoBehaviour
 	public GameObject NextActivatePressurePad; // SET TO PREFAB OF PRESSURE PAD FOR NEXT WAVEMANAGER
 	public int IndexOfDialogueToEnable;// int of index of dialogue
 	public GameObject WeaponToDrop;
+	public bool IsBoss = false;
 
 	private GameManager gameMan;
 
@@ -18,6 +20,10 @@ public class DestroyWave : MonoBehaviour
 
 	private void OnDestroy()
 	{
+		if (IsBoss)
+		{
+			SceneManager.LoadScene("Credits");
+		}
 		gameMan.TurnOnDialogue(IndexOfDialogueToEnable);
 		Instantiate(NextActivatePressurePad);
 

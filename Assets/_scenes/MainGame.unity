@@ -78594,20 +78594,37 @@ MonoBehaviour:
   - waveName: 3-1
     enemyPrefabs:
     - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
     - {fileID: 2001001210}
   - waveName: 3-2
     enemyPrefabs:
     - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    spawns:
+    - {fileID: 1216719597}
+  - waveName: 3-3
+    enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
     - {fileID: 2001001210}
+  - waveName: 3-4
+    enemyPrefabs:
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    spawns:
     - {fileID: 1722008261}
+  - waveName: 3-5
+    enemyPrefabs:
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    spawns:
+    - {fileID: 2001001210}
+  - waveName: 3-6
+    enemyPrefabs:
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    spawns:
     - {fileID: 1489918177}
+  - waveName: 3-7
+    enemyPrefabs:
+    - {fileID: 687260008737870912, guid: 10af44193959dce408b346192cc89012, type: 3}
+    spawns:
     - {fileID: 1216719597}
   enemiesAlive: 0
   waveNum: 0
@@ -78824,19 +78841,23 @@ MonoBehaviour:
   - waveName: 2-1
     enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
-    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
     spawns:
     - {fileID: 1489918177}
-    - {fileID: 1216719597}
   - waveName: 2-2
     enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
-    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    spawns:
+    - {fileID: 1216719597}
+  - waveName: 2-3
+    enemyPrefabs:
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    spawns:
+    - {fileID: 1722008261}
+  - waveName: 2-4
+    enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
-    - {fileID: 1489918177}
-    - {fileID: 2001001210}
-    - {fileID: 1216719597}
+    - {fileID: 1722008261}
   - waveName: 2-MiniBoss
     enemyPrefabs:
     - {fileID: 8105158453489949967, guid: 3f9533866bd47dd468265ad78af78f74, type: 3}
@@ -79472,7 +79493,7 @@ PrefabInstance:
         type: 3}
       propertyPath: waves.Array.data[2].enemyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 3358669062581680495, guid: d5b711488ef50f54db3d6b658ec498be,
+      objectReference: {fileID: 687908624736007834, guid: bd0b91fa008867449b73e4e6a0a77ec6,
         type: 3}
     - target: {fileID: 6514675735943641592, guid: 99fa0f4b262c9864092742dbfd4b99a6,
         type: 3}

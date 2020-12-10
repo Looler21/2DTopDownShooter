@@ -100,7 +100,7 @@ public class WaveManager : MonoBehaviour
 		}
 		else
 		{
-			if (waveNum == waves.Length)
+			if (waveNum == waves.Length-1)
 			{
 				WavesOver();
 			}

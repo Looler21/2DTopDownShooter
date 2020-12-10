@@ -124,7 +124,14 @@ MonoBehaviour:
   waitTime: 0
   startWaitTime: 0
   waveManager: {fileID: 0}
+  spriteOffset: 0
+  projectilePrefab: {fileID: 0}
+  bulletDamage: 1
+  bulletSpeed: 0
+  bulletScaleSize: 10
+  fireSound: {fileID: 0}
   firingOrigin: {fileID: 687260009825267491}
+  muzzleFlash: {fileID: 0}
   fireRate: 0
   firingRange: 300
   fireRateRandomValue: 0.5
@@ -157,6 +164,8 @@ MonoBehaviour:
   NextActivatePressurePad: {fileID: 6852293598204903206, guid: c89f0e34df15885478acf95060896c8c,
     type: 3}
   IndexOfDialogueToEnable: 3
+  WeaponToDrop: {fileID: 6865324213290198560, guid: 25a1ce2328b5c3040a3b1c774d730197,
+    type: 3}
 --- !u!50 &3232633939308511244
 Rigidbody2D:
   serializedVersion: 4

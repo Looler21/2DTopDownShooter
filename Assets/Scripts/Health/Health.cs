@@ -18,7 +18,6 @@ public class Health : MonoBehaviour
 	public virtual void Damage(float amount)// takes perscribed amount away
 	{
 		health -= amount;
-		Debug.Log(gameObject.name + " took " + amount + " damage");
 		if(health <= 0)
 		{
 			Die();

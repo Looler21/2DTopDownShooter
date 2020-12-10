@@ -135,17 +135,15 @@ public class BaseWeapon{
 					if (hit.collider.CompareTag("Enemy"))
 					{
 						hit.transform.GetComponent<Health>().Damage(1 * GetDamageMultiplier());
-
-						//hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
-
-						Debug.Log(1 * GetDamageMultiplier());
+						
 						hit.transform.GetComponent<FlashWhenCollide>().FlashSpriteColor();
+						
 						return true;
 					}
 				}
 				
 			}
-			return false;
+			return true;
 		}
 		else if(shootType == ShootType.projectile)
 		{

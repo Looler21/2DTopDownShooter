@@ -387,8 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextActivatePressurePad: {fileID: 6852293598204903206, guid: 2a4759b588443a84ba3c7d47d9090a2e,
     type: 3}
-  IndexOfDialogueToEnable: 1
-  WeaponToDrop: {fileID: 6865324213290198560, guid: 25a1ce2328b5c3040a3b1c774d730197,
+  IndexOfDialogueToEnable: 2
+  WeaponToDrop: {fileID: 5408109690726966256, guid: d623327cdf1552b4686e89de338dc110,
     type: 3}
 --- !u!1 &7367424185615451959
 GameObject:

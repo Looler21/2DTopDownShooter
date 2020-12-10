@@ -33,8 +33,6 @@ public class playerShooting : MonoBehaviour {
 	public Sprite ArChar;
 	public Sprite SniperChar;
 
-	[Tooltip("Prefab for the plasma gun")]
-	public GameObject plasmaPrefab; // projectile prefab for plasma gun
 
 	private void Awake()
 	{
@@ -88,14 +86,18 @@ public class playerShooting : MonoBehaviour {
 					firingOrigin = new Vector2(firingPoint.position.x, firingPoint.position.y);
 					mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
 						Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-
-					GameObject thisThing = Instantiate(muzzleFlash, firingOrigin, Quaternion.identity);
-					Destroy(thisThing, 0.2f);
-					au.PlayOneShot(au.clip);
-
+					
 					if (weapon.Shoot(mousePosition, firingOrigin, timeSinceLastFire, weapon.GetShootDistance()))
 					{
+						
 						timeSinceLastFire = 0;
+						
+						GameObject thisThing = Instantiate(muzzleFlash, firingOrigin, Quaternion.identity);
+						
+						Destroy(thisThing, 0.2f);
+						
+						au.PlayOneShot(au.clip);
+						
 					}
 					
 				}else if(BaseWeapon.getShootType(weapon) == BaseWeapon.ShootType.projectile)
@@ -125,7 +127,7 @@ public class playerShooting : MonoBehaviour {
 			default:
 				return null; // return path should never be needed
 			case "Plasma":
-				return plasmaPrefab;
+				return null;
 		}
 	}
 
@@ -154,8 +156,7 @@ public class playerShooting : MonoBehaviour {
 
 	public void SetPlasmaUsable()
 	{
-		PlasmaUsable = true;
-		SetWeapon(weaponPlasma);
+		
 	}
 
 	public void SetWeapon(BaseWeapon weapon)
