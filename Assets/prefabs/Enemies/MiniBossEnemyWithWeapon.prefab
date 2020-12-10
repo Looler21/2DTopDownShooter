@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 4
+  speed: 5
   attackRange: 10
   attackDamage: 3
   chasing: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6374c7d1bbba5444b5b861300b53b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 15
   health: 0
 --- !u!82 &2656826867755260569
 AudioSource:

@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6374c7d1bbba5444b5b861300b53b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
+  maxHealth: 100
   health: 0
 --- !u!58 &3326016604839201927
 CircleCollider2D:
