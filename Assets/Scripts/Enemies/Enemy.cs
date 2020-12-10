@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected virtual void UpdateWaveManager(WaveManager waveManager)
-	{
+ 	{
 		//Destroy(gameObject);
 		//Debug.Log("Killed enemy");
 
@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour {
 			Debug.LogError("ERROR: Enemy destroyed. No wave manager found to decrease death of enemy: " + transform.root.name);
 	}
 
-	private void OnDestroy()
+	protected virtual void OnDestroy()
 	{
 		UpdateWaveManager(waveManager);
 	}
