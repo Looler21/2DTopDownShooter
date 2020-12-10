@@ -22,12 +22,17 @@ public class DestroyWave : MonoBehaviour
 	{
 		if (IsBoss)
 		{
+			Debug.Log("Is Boss");
 			SceneManager.LoadScene("Credits");
 		}
-		gameMan.TurnOnDialogue(IndexOfDialogueToEnable);
-		Instantiate(NextActivatePressurePad);
+		else
+		{
+			Debug.Log("Not Boss");
+			gameMan.TurnOnDialogue(IndexOfDialogueToEnable);
+			Instantiate(NextActivatePressurePad);
 
-		FindObjectOfType<playerShooting>().transform.position = FindObjectOfType<SpawnPoint>().gameObject.transform.position;
-		Instantiate<GameObject>(WeaponToDrop, FindObjectOfType<WeaponSpawnPoint>().gameObject.transform);
+			FindObjectOfType<playerShooting>().transform.position = FindObjectOfType<SpawnPoint>().gameObject.transform.position;
+			Instantiate<GameObject>(WeaponToDrop, FindObjectOfType<WeaponSpawnPoint>().gameObject.transform);
+		}
 	}
 }

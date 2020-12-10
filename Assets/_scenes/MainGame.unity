@@ -328,7 +328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &36470242
 GameObject:
@@ -555,7 +555,7 @@ Transform:
   - {fileID: 1216719597}
   - {fileID: 302058732}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &177792384
 GameObject:
@@ -638,7 +638,7 @@ Transform:
   m_LocalScale: {x: 4.5, y: 4.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &195625725
 GameObject:
@@ -1532,7 +1532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &494007557
 GameObject:
@@ -1575,7 +1575,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522398030
 GameObject:
@@ -1887,7 +1887,7 @@ Transform:
   - {fileID: 1523220388}
   - {fileID: 1165677683}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &644269240
 PrefabInstance:
@@ -2000,7 +2000,7 @@ GameObject:
   - component: {fileID: 741547248}
   m_Layer: 0
   m_Name: SecondMap
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77600,7 +77600,7 @@ MonoBehaviour:
   waves:
   - waveName: King-Boss
     enemyPrefabs:
-    - {fileID: 5242315670222357969, guid: 14809cb907d436e4bbf69fdc815ca1c4, type: 3}
+    - {fileID: 3326016604839201925, guid: 2edad631b4d31ad4193f1603e3375a68, type: 3}
     spawns:
     - {fileID: 302058732}
   enemiesAlive: 0
@@ -78594,38 +78594,35 @@ MonoBehaviour:
   - waveName: 3-1
     enemyPrefabs:
     - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
     spawns:
+    - {fileID: 1489918177}
     - {fileID: 2001001210}
   - waveName: 3-2
     enemyPrefabs:
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
     - {fileID: 1216719597}
+    - {fileID: 1722008261}
+    - {fileID: 1489918177}
   - waveName: 3-3
     enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
-    spawns:
-    - {fileID: 2001001210}
-  - waveName: 3-4
-    enemyPrefabs:
+    - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    spawns:
-    - {fileID: 1722008261}
-  - waveName: 3-5
-    enemyPrefabs:
-    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    spawns:
-    - {fileID: 2001001210}
-  - waveName: 3-6
-    enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
     - {fileID: 1489918177}
-  - waveName: 3-7
-    enemyPrefabs:
-    - {fileID: 687260008737870912, guid: 10af44193959dce408b346192cc89012, type: 3}
-    spawns:
+    - {fileID: 2001001210}
+    - {fileID: 1722008261}
     - {fileID: 1216719597}
+  - waveName: 3-MiniBoss
+    enemyPrefabs:
+    - {fileID: 687260008737870912, guid: 95de3a80ab79f704ebf59e15277b28c3, type: 3}
+    spawns:
+    - {fileID: 302058732}
   enemiesAlive: 0
   waveNum: 0
 --- !u!1 &1684333515
@@ -78841,26 +78838,22 @@ MonoBehaviour:
   - waveName: 2-1
     enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
+    - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
     spawns:
     - {fileID: 1489918177}
+    - {fileID: 1216719597}
   - waveName: 2-2
     enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
-    spawns:
-    - {fileID: 1216719597}
-  - waveName: 2-3
-    enemyPrefabs:
     - {fileID: 687260008737870912, guid: b3bcb9b2ac5e14444a6d3e3a7d6e3b28, type: 3}
-    spawns:
-    - {fileID: 1722008261}
-  - waveName: 2-4
-    enemyPrefabs:
     - {fileID: 3460482279604703238, guid: a3ccc34d4e08ba344874a6e86f1ee4d9, type: 3}
     spawns:
     - {fileID: 1722008261}
-  - waveName: 2-MiniBoss
+    - {fileID: 1216719597}
+    - {fileID: 1489918177}
+  - waveName: 2-3
     enemyPrefabs:
-    - {fileID: 8105158453489949967, guid: 3f9533866bd47dd468265ad78af78f74, type: 3}
+    - {fileID: 7367424184870257693, guid: 49d674567ea7d094fa37e51e16aeedf1, type: 3}
     spawns:
     - {fileID: 302058732}
   enemiesAlive: 0
@@ -79642,12 +79635,12 @@ PrefabInstance:
     - target: {fileID: 6852293598204903226, guid: e71482da36f78a64aa3f7dc46237da9b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.941
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 6852293598204903226, guid: e71482da36f78a64aa3f7dc46237da9b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -35.355
+      value: -34.2
       objectReference: {fileID: 0}
     - target: {fileID: 6852293598204903226, guid: e71482da36f78a64aa3f7dc46237da9b,
         type: 3}
@@ -79677,7 +79670,7 @@ PrefabInstance:
     - target: {fileID: 6852293598204903226, guid: e71482da36f78a64aa3f7dc46237da9b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6852293598204903226, guid: e71482da36f78a64aa3f7dc46237da9b,
         type: 3}

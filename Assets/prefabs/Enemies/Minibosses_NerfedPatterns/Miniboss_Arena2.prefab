@@ -385,11 +385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105bbfa49b05801418bec063804d764d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextActivatePressurePad: {fileID: 6852293598204903206, guid: 2a4759b588443a84ba3c7d47d9090a2e,
+  NextActivatePressurePad: {fileID: 6852293598204903206, guid: 6c48475b1d9cfb9469045ffc71ddad66,
     type: 3}
   IndexOfDialogueToEnable: 2
   WeaponToDrop: {fileID: 5408109690726966256, guid: d623327cdf1552b4686e89de338dc110,
     type: 3}
+  IsBoss: 0
 --- !u!1 &7367424185615451959
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour {
 				Attack(target);
 			}
 		}
-		else if(distanceToPlayer >= attackRange)
+		else if(distanceToPlayer == attackRange)
 		{
 			MoveTo(target);
 		}
